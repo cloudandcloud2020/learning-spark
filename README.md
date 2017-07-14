@@ -1,5 +1,14 @@
 # learning-spark
 
+## Prerequisites
+Ensure that following prerequsites are met for running code which is part of this repository.
+1. **Java 8** is installed
+* [See](https://www.mkyong.com/java/how-to-set-java_home-environment-variable-on-mac-os-x/) for more details on how to set JAVA_HOME for Mac OSX 
+* JAVA_HOME is set correctly
+2. **Apache Spark 1.6.3** with Hadoop 2.6 is installed 
+* SPARK_HOME environment variable is set correctly
+3. **Maven** is installed
+
 ### Run Maven clean using command
 
 `
