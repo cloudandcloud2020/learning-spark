@@ -12,11 +12,8 @@ import java.util.Arrays;
 public class Main {
 
     public static void main(String[] args){
-        String master="local[*]";
 
-        SparkConf conf=new SparkConf().
-                setAppName("Word Count")
-                .setMaster(master);
+        SparkConf conf=new SparkConf().setAppName("Word Count");
 
         JavaSparkContext context = new JavaSparkContext(conf);
 
@@ -28,9 +25,18 @@ public class Main {
 
         JavaPairRDD<String, Integer> counts = wordCountPair.reduceByKey((accValue, newValue) -> accValue + newValue);
 
-        System.out.println(counts.collect());
+        counts.cache();
 
-//        counts.saveAsTextFile("WordCountOutput/");
+        JavaPairRDD<String, Integer> sortedCounts = counts.sortByKey(false);
+        System.out.printf("Number of words = %d%n", counts.count());
+
+        System.out.println(sortedCounts.collect());
+
+        JavaPairRDD<String, Integer> filteredCount = counts.filter(c -> c._1.length() > 5);
+
+        System.out.println("Number of words having length greater than 5 ");
+
+        System.out.println("counts = " + filteredCount.count());
 
     }
 }
