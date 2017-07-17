@@ -13,6 +13,10 @@ public class Main {
 
     public static void main(String[] args){
 
+        // TODO
+        // Parse input arguments using google argument checke library
+        // make input & output paths configurable via commandline
+
         SparkConf conf=new SparkConf().setAppName("Word Count");
 
         JavaSparkContext context = new JavaSparkContext(conf);

@@ -9,6 +9,7 @@ Ensure that following prerequsites are met for running code which is part of thi
 * SPARK_HOME environment variable is set correctly
 3. **Maven** is installed
 
+## Build & Run code
 ### Run Maven clean using command
 
 `
@@ -32,6 +33,15 @@ mvn package
 
 `
 spark-submit --class com.nileshgule.Main \
+--master local --deploy-mode client --executor-memory 2g \
+--name wordcount --conf "spark.app.id=wordcount" \
+target/learning-spark-1.0.jar
+`
+
+### Run MapToDoubleExample program
+
+`
+spark-submit --class com.nileshgule.MapToDoubleExample \
 --master local --deploy-mode client --executor-memory 2g \
 --name wordcount --conf "spark.app.id=wordcount" \
 target/learning-spark-1.0.jar
