@@ -4,7 +4,6 @@ import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 
-import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -14,7 +13,10 @@ public class CachingExample {
 
         JavaSparkContext context = new JavaSparkContext(conf);
 
-        JavaRDD<Integer> numbers = context.parallelize(IntStream.rangeClosed(1, 100).boxed().collect(Collectors.toList()));
+        Integer rangeStart = Integer.parseInt(args[0]);
+        Integer rangeEnd = Integer.parseInt(args[1]);
+
+        JavaRDD<Integer> numbers = context.parallelize(IntStream.rangeClosed(rangeStart, rangeEnd).boxed().collect(Collectors.toList()));
 
         numbers.cache();
 
