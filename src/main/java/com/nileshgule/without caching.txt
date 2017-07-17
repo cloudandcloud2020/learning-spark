@@ -1,0 +1,55 @@
+17/07/17 15:22:17 INFO SparkContext: Starting job: count at CachingExample.java:17
+17/07/17 15:22:17 INFO DAGScheduler: Got job 0 (count at CachingExample.java:17) with 1 output partitions
+17/07/17 15:22:17 INFO DAGScheduler: Final stage: ResultStage 0 (count at CachingExample.java:17)
+17/07/17 15:22:17 INFO DAGScheduler: Parents of final stage: List()
+17/07/17 15:22:17 INFO DAGScheduler: Missing parents: List()
+17/07/17 15:22:17 INFO DAGScheduler: Submitting ResultStage 0 (ParallelCollectionRDD[0] at parallelize at CachingExample.java:15), which has no missing parents
+17/07/17 15:22:17 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 1320.0 B, free 511.1 MB)
+17/07/17 15:22:17 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 926.0 B, free 511.1 MB)
+17/07/17 15:22:17 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on localhost:59623 (size: 926.0 B, free: 511.1 MB)
+17/07/17 15:22:17 INFO SparkContext: Created broadcast 0 from broadcast at DAGScheduler.scala:1006
+17/07/17 15:22:17 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 0 (ParallelCollectionRDD[0] at parallelize at CachingExample.java:15)
+17/07/17 15:22:17 INFO TaskSchedulerImpl: Adding task set 0.0 with 1 tasks
+17/07/17 15:22:17 INFO TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0, localhost, partition 0,PROCESS_LOCAL, 2223 bytes)
+17/07/17 15:22:17 INFO Executor: Running task 0.0 in stage 0.0 (TID 0)
+17/07/17 15:22:17 INFO Executor: Fetching http://192.168.1.82:59622/jars/learning-spark-1.0.jar with timestamp 1500276137254
+17/07/17 15:22:18 INFO Utils: Fetching http://192.168.1.82:59622/jars/learning-spark-1.0.jar to /private/var/folders/5l/ndny629d7_ngf293p_qgcbwc0000gn/T/spark-3290e76f-4337-4ec7-a4e5-a73879025c40/userFiles-91c59597-6ef0-492e-a76b-3c9e7149ce3c/fetchFileTemp58888558368699798.tmp
+17/07/17 15:22:18 INFO Executor: Adding file:/private/var/folders/5l/ndny629d7_ngf293p_qgcbwc0000gn/T/spark-3290e76f-4337-4ec7-a4e5-a73879025c40/userFiles-91c59597-6ef0-492e-a76b-3c9e7149ce3c/learning-spark-1.0.jar to class loader
+17/07/17 15:22:18 INFO Executor: Finished task 0.0 in stage 0.0 (TID 0). 953 bytes result sent to driver
+17/07/17 15:22:18 INFO TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 146 ms on localhost (1/1)
+17/07/17 15:22:18 INFO TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool
+17/07/17 15:22:18 INFO DAGScheduler: ResultStage 0 (count at CachingExample.java:17) finished in 0.157 s
+17/07/17 15:22:18 INFO DAGScheduler: Job 0 finished: count at CachingExample.java:17, took 0.340370 s
+numbers.count() = 4
+17/07/17 15:22:18 INFO SparkContext: Starting job: collect at CachingExample.java:19
+17/07/17 15:22:18 INFO DAGScheduler: Got job 1 (collect at CachingExample.java:19) with 1 output partitions
+17/07/17 15:22:18 INFO DAGScheduler: Final stage: ResultStage 1 (collect at CachingExample.java:19)
+17/07/17 15:22:18 INFO DAGScheduler: Parents of final stage: List()
+17/07/17 15:22:18 INFO DAGScheduler: Missing parents: List()
+17/07/17 15:22:18 INFO DAGScheduler: Submitting ResultStage 1 (ParallelCollectionRDD[0] at parallelize at CachingExample.java:15), which has no missing parents
+17/07/17 15:22:18 INFO MemoryStore: Block broadcast_1 stored as values in memory (estimated size 1496.0 B, free 511.1 MB)
+17/07/17 15:22:18 INFO MemoryStore: Block broadcast_1_piece0 stored as bytes in memory (estimated size 964.0 B, free 511.1 MB)
+17/07/17 15:22:18 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on localhost:59623 (size: 964.0 B, free: 511.1 MB)
+17/07/17 15:22:18 INFO SparkContext: Created broadcast 1 from broadcast at DAGScheduler.scala:1006
+17/07/17 15:22:18 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 1 (ParallelCollectionRDD[0] at parallelize at CachingExample.java:15)
+17/07/17 15:22:18 INFO TaskSchedulerImpl: Adding task set 1.0 with 1 tasks
+17/07/17 15:22:18 INFO TaskSetManager: Starting task 0.0 in stage 1.0 (TID 1, localhost, partition 0,PROCESS_LOCAL, 2223 bytes)
+17/07/17 15:22:18 INFO Executor: Running task 0.0 in stage 1.0 (TID 1)
+17/07/17 15:22:18 INFO Executor: Finished task 0.0 in stage 1.0 (TID 1). 1022 bytes result sent to driver
+17/07/17 15:22:18 INFO TaskSetManager: Finished task 0.0 in stage 1.0 (TID 1) in 12 ms on localhost (1/1)
+17/07/17 15:22:18 INFO TaskSchedulerImpl: Removed TaskSet 1.0, whose tasks have all completed, from pool
+17/07/17 15:22:18 INFO DAGScheduler: ResultStage 1 (collect at CachingExample.java:19) finished in 0.012 s
+17/07/17 15:22:18 INFO DAGScheduler: Job 1 finished: collect at CachingExample.java:19, took 0.022738 s
+numbers.collect() = [1, 2, 3, 4]
+17/07/17 15:22:18 INFO SparkContext: Invoking stop() from shutdown hook
+17/07/17 15:22:18 INFO SparkUI: Stopped Spark web UI at http://192.168.1.82:4040
+17/07/17 15:22:18 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+17/07/17 15:22:18 INFO MemoryStore: MemoryStore cleared
+17/07/17 15:22:18 INFO BlockManager: BlockManager stopped
+17/07/17 15:22:18 INFO BlockManagerMaster: BlockManagerMaster stopped
+17/07/17 15:22:18 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+17/07/17 15:22:18 INFO SparkContext: Successfully stopped SparkContext
+17/07/17 15:22:18 INFO ShutdownHookManager: Shutdown hook called
+17/07/17 15:22:18 INFO ShutdownHookManager: Deleting directory /private/var/folders/5l/ndny629d7_ngf293p_qgcbwc0000gn/T/spark-3290e76f-4337-4ec7-a4e5-a73879025c40
+17/07/17 15:22:18 INFO ShutdownHookManager: Deleting directory /private/var/folders/5l/ndny629d7_ngf293p_qgcbwc0000gn/T/spark-3290e76f-4337-4ec7-a4e5-a73879025c40/httpd-5990b442-3dba-4742-b1f2-a20f272718fe
+spark-submit --class com.nileshgule.CachingExample --master local  client  2g  6.36s user 0.39s system 205% cpu 3.290 total
