@@ -7,6 +7,7 @@ import org.apache.spark.api.java.JavaSparkContext;
 import scala.Tuple2;
 
 import java.util.Arrays;
+import java.util.Map;
 
 
 public class WordCount {
@@ -24,6 +25,10 @@ public class WordCount {
         JavaRDD<String> textFile = context.textFile("input/README.md");
 
         JavaRDD<String> tokenized = textFile.flatMap(line -> Arrays.asList(line.split(" ")));
+
+        Map<String, Long> countByValue = tokenized.countByValue();
+
+        System.out.println("Number of words using countByValue = " + countByValue);
 
         JavaPairRDD<String, Integer> wordCountPair = tokenized.mapToPair(word -> new Tuple2<>(word, 1));
 

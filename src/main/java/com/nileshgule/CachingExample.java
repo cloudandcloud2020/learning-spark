@@ -1,5 +1,6 @@
 package com.nileshgule;
 
+import com.google.common.base.Preconditions;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
@@ -13,6 +14,7 @@ public class CachingExample {
 
         JavaSparkContext context = new JavaSparkContext(conf);
 
+//        Preconditions.checkArgument(args.length > 1, "Provide start and end range generation");
         Integer rangeStart = Integer.parseInt(args[0]);
         Integer rangeEnd = Integer.parseInt(args[1]);
 
