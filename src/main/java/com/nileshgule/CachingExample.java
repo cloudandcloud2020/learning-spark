@@ -25,6 +25,9 @@ public class CachingExample {
         System.out.println("numbers.count() = " + numbers.count());
 
         System.out.println("numbers.collect() = " + numbers.collect());
+
+        System.out.println("Number of partitions used = " + numbers.getNumPartitions());
+
     }
 
 }
