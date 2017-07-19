@@ -33,8 +33,11 @@ mvn package
 
 `
 spark-submit --class com.nileshgule.WordCount \
---master local --deploy-mode client --executor-memory 2g \
---name wordcount --conf "spark.app.id=wordcount" \
+--master local \
+--deploy-mode client \
+--executor-memory 2g \
+--name WordCount \
+--conf "spark.app.id=WordCount" \
 target/learning-spark-1.0.jar
 `
 
@@ -42,8 +45,11 @@ target/learning-spark-1.0.jar
 
 `
 spark-submit --class com.nileshgule.MapToDoubleExample \
---master local --deploy-mode client --executor-memory 2g \
---name MapToDouble --conf "spark.app.id=MapToDoubleExample" \
+--master local \
+--deploy-mode client \
+--executor-memory 2g \
+--name MapToDouble \
+--conf "spark.app.id=MapToDoubleExample" \
 target/learning-spark-1.0.jar
 `
 
@@ -52,7 +58,11 @@ The last two parameters are for start and end of the range
 
 `
 spark-submit --class com.nileshgule.CachingExample \
---master local --deploy-mode client --executor-memory 2g \
---name CachingExample --conf "spark.app.id=CachingExample" \
-target/learning-spark-1.0.jar 1 100
+--master local \
+--deploy-mode client \
+--executor-memory 2g \
+--name CachingExample \
+--conf "spark.app.id=CachingExample" \
+target/learning-spark-1.0.jar \
+1 100
 `
