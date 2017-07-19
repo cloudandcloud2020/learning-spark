@@ -31,7 +31,7 @@ mvn package
 
 ### Run wordcount program
 
-`
+```bash
 spark-submit --class com.nileshgule.WordCount \
 --master local \
 --deploy-mode client \
@@ -39,11 +39,11 @@ spark-submit --class com.nileshgule.WordCount \
 --name WordCount \
 --conf "spark.app.id=WordCount" \
 target/learning-spark-1.0.jar
-`
+```
 
 ### Run MapToDoubleExample program
 
-`
+```bash
 spark-submit --class com.nileshgule.MapToDoubleExample \
 --master local \
 --deploy-mode client \
@@ -51,12 +51,12 @@ spark-submit --class com.nileshgule.MapToDoubleExample \
 --name MapToDouble \
 --conf "spark.app.id=MapToDoubleExample" \
 target/learning-spark-1.0.jar
-`
+```
 
 ### Run CachingExample program
 The last two parameters are for start and end of the range 
 
-`
+```bash
 spark-submit --class com.nileshgule.CachingExample \
 --master local \
 --deploy-mode client \
@@ -65,4 +65,4 @@ spark-submit --class com.nileshgule.CachingExample \
 --conf "spark.app.id=CachingExample" \
 target/learning-spark-1.0.jar \
 1 100
-`
+```
