@@ -12,21 +12,21 @@ Ensure that following prerequsites are met for running code which is part of thi
 ## Build & Run code
 ### Run Maven clean using command
 
-`
+```bash
 mvn clean
-`
+```
 
 ### Run Maven compile using command
 
-`
+```bash
 mvn compile
-`
+```
 
 ### Run Maven package using command
 
-`
+```bash
 mvn package
-`
+```
 
 
 ### Run wordcount program
