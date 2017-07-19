@@ -66,3 +66,5 @@ spark-submit --class com.nileshgule.CachingExample \
 target/learning-spark-1.0.jar \
 1 100
 ```
+
+Refer to the [AWS-EMR](AWS-EMR.md) for details on running the Spark jobs on EMR cluster.
