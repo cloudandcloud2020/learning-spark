@@ -27,3 +27,6 @@ hs_err_pid*
 target/generated-sources/
 target/maven-archiver/
 target/maven-status/
+
+#AWS EMR related files
+*.pem
