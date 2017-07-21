@@ -67,4 +67,17 @@ target/learning-spark-1.0.jar \
 1 100
 ```
 
+### Run PairRDDExample program
+The last two parameters are for start and end of the range 
+
+```bash
+spark-submit --class com.nileshgule.PairRDDExample \
+--master local \
+--deploy-mode client \
+--executor-memory 2g \
+--name PairRDDExample \
+--conf "spark.app.id=PairRDDExample" \
+target/learning-spark-1.0.jar
+```
+
 Refer to the [AWS-EMR](AWS-EMR.md) for details on running the Spark jobs on EMR cluster.
