@@ -36,7 +36,7 @@ Refer to [Java8.json](EMR-Conf/Java8.json) for more details
 aws emr create-cluster \
 --name SparkCluster \
 --release-label emr-4.8.4 \
---instance-type m3.xlarge \
+--instance-type t2.micro \
 --instance-count 3 \
 --applications Name=Spark \
 --use-default-roles \
@@ -100,3 +100,10 @@ ec2-52-77-233-71.ap-southeast-1.compute.amazonaws.com:20888/proxy/application_15
 
 Spark history server can be exposed using
 ec2-52-77-233-71.ap-southeast-1.compute.amazonaws.com:18080
+
+Terminate the cluster after usage
+```bash
+aws emr terminate-clusters --cluster-ids j-RN5OCV563XXH
+```
+
+Replace `j-RN5OCV563XXH` with the actual cluster id
