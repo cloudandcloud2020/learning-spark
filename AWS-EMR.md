@@ -78,9 +78,25 @@ Copy the jar to S3 bucket
 
 Execute spark submit pointing to the jar from S3 bucket
 ```bash
-spark-submit --master yarn-cluster --class com.nileshgule.CachingExample \
+spark-submit --master yarn-cluster \
+--class com.nileshgule.CachingExample \
 s3://ng-spark/learning-spark-1.0.jar \
-1 100
+1 1000
 ```
 
+Run the MapToDouble example
+```bash
+spark-submit --class com.nileshgule.MapToDoubleExample \
+--master yarn-cluster \
+s3://ng-spark/learning-spark-1.0.jar
+```
 
+### Access Spark UI using foxyproxy method
+Download & install [foxyproxy](http://foxyproxy.mozdev.org/downloads.html) for Chrome or Firefox as browser plugin.
+Import the [foxyproxy-settings.xml](EMR-Conf/foxyproxy-settings.xml)
+
+Running application can be viewed using
+ec2-52-77-233-71.ap-southeast-1.compute.amazonaws.com:20888/proxy/application_1500608925666_0002/
+
+Spark history server can be exposed using
+ec2-52-77-233-71.ap-southeast-1.compute.amazonaws.com:18080
