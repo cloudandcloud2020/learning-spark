@@ -28,5 +28,7 @@ public class PairRDDExample {
 //        System.out.println("pairedRDD.collectAsMap() = " + pairedRDD.collectAsMap().toString());
 
         System.out.println("pairedRDD.lookup(3) = " + pairedRDD.lookup(3));
+
+
     }
 }
