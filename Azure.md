@@ -4,7 +4,7 @@ Use HDInsight Spark cluster to run Spark jobs. Refer to [introduction to Spark o
 
 Intellij IDE can submmit jobs to HDInsight cluster directly using the [Azure Toolkit for Intellij](https://docs.microsoft.com/en-us/azure/hdinsight/hdinsight-apache-spark-intellij-tool-plugin)
 
-Don't forget to [delete the cluster](https://docs.microsoft.com/en-us/azure/hdinsight/hdinsight-delete-cluster)
+**Most Important:** Don't forget to [delete the cluster](https://docs.microsoft.com/en-us/azure/hdinsight/hdinsight-delete-cluster)
 
 
 ## Azure CLI

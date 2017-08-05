@@ -81,3 +81,5 @@ target/learning-spark-1.0.jar
 ```
 
 Refer to the [AWS-EMR](AWS-EMR.md) for details on running the Spark jobs on EMR cluster.
+
+Refer to the [Azure](Azure.md) for details on running the Spark jobs on Microsoft Azure HDInsights cluster.
