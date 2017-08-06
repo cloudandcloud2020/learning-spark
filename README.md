@@ -1,5 +1,9 @@
 # learning-spark
 
+[![Build Status](https://travis-ci.org/NileshGule/learning-spark.svg?branch=master)](https://travis-ci.org/NileshGule/learning-spark)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/03a136aed4204f869ed4f70c8b803f63)](https://www.codacy.com/app/vn_nilesh/learning-spark?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=NileshGule/learning-spark&amp;utm_campaign=Badge_Grade)
+
+
 ## Prerequisites
 Ensure that following prerequsites are met for running code which is part of this repository.
 1. **Java 8** is installed
