@@ -13,6 +13,8 @@ public class PairRDDExample {
     public static void main(String[] args) {
         SparkConf conf=new SparkConf().setAppName("Pair RDD example");
 
+        conf.setMaster("local[*]");
+
         JavaSparkContext context = new JavaSparkContext(conf);
 
         List<Tuple2<Integer, Integer>> keyValuePair = Arrays.asList(new Tuple2<>(1,2), new Tuple2<>(3, 4), new Tuple2<>(3, 6));

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>WordCount.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">learning-spark</a> &gt; <a href="index.source.html" class="el_package">com.nileshgule</a> &gt; <span class="el_source">WordCount.java</span></div><h1>WordCount.java</h1><pre class="source lang-java linenums">package com.nileshgule;
+
+import org.apache.spark.SparkConf;
+import org.apache.spark.api.java.JavaPairRDD;
+import org.apache.spark.api.java.JavaRDD;
+import org.apache.spark.api.java.JavaSparkContext;
+import scala.Tuple2;
+
+import java.util.Arrays;
+import java.util.Map;
+
+
+<span class="nc" id="L13">public class WordCount {</span>
+
+    public static void main(String[] args){
+
+        // TODO
+        // Parse input arguments using google argument checke library
+        // make input &amp; output paths configurable via commandline
+
+<span class="nc" id="L21">        SparkConf conf=new SparkConf().setAppName(&quot;Word Count&quot;);</span>
+
+<span class="nc" id="L23">        JavaSparkContext context = new JavaSparkContext(conf);</span>
+
+<span class="nc" id="L25">        JavaRDD&lt;String&gt; textFile = context.textFile(&quot;input/README.md&quot;);</span>
+
+<span class="nc" id="L27">        JavaRDD&lt;String&gt; tokenized = textFile.flatMap(line -&gt; Arrays.asList(line.split(&quot; &quot;)));</span>
+
+<span class="nc" id="L29">        Map&lt;String, Long&gt; countByValue = tokenized.countByValue();</span>
+
+<span class="nc" id="L31">        System.out.println(&quot;Number of words using countByValue = &quot; + countByValue);</span>
+
+<span class="nc" id="L33">        JavaPairRDD&lt;String, Integer&gt; wordCountPair = tokenized.mapToPair(word -&gt; new Tuple2&lt;&gt;(word, 1));</span>
+
+<span class="nc" id="L35">        JavaPairRDD&lt;String, Integer&gt; counts = wordCountPair.reduceByKey((accValue, newValue) -&gt; accValue + newValue);</span>
+
+<span class="nc" id="L37">        counts.cache();</span>
+
+<span class="nc" id="L39">        JavaPairRDD&lt;String, Integer&gt; sortedCounts = counts.sortByKey(false);</span>
+<span class="nc" id="L40">        System.out.printf(&quot;Number of words = %d%n&quot;, counts.count());</span>
+
+<span class="nc" id="L42">        System.out.println(sortedCounts.collect());</span>
+
+<span class="nc bnc" id="L44" title="All 2 branches missed.">        JavaPairRDD&lt;String, Integer&gt; filteredCount = counts.filter(c -&gt; c._1.length() &gt; 5);</span>
+
+<span class="nc" id="L46">        System.out.println(&quot;Number of words having length greater than 5 &quot;);</span>
+
+<span class="nc" id="L48">        System.out.println(&quot;counts = &quot; + filteredCount.count());</span>
+
+<span class="nc" id="L50">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

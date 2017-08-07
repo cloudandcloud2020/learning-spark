@@ -8,11 +8,11 @@ mvn dependency:list
 
 mvn dependency:resolve
 
-mvn dependecy:resolve-plugins
+mvn dependency:resolve-plugins
 ``` 
 
 Latest version for Maven plugin can be found using following commands
 ```bash
 mvn versions:display-dependency-updates
-mvn versions:display-plugin-updates
+mvn versions:display-plugin-updates 
 ```
