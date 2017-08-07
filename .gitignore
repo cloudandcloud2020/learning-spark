@@ -20,9 +20,7 @@ hs_err_pid*
 #intellij generated files
 .idea
 .DS_Store
-target/generated-sources/
-target/maven-archiver/
-target/maven-status/
+target/*
 
 #AWS EMR related files
 *.pem
