@@ -1,5 +1,0 @@
-GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-learning-spark,com.nileshgule,CachingExample,75,0,0,0,11,0,2,0,2,0
-learning-spark,com.nileshgule,WordCount,115,0,2,0,17,0,7,0,6,0
-learning-spark,com.nileshgule,MapToDoubleExample,64,0,0,0,7,0,3,0,3,0
-learning-spark,com.nileshgule,PairRDDExample,3,92,0,0,1,10,1,1,1,1

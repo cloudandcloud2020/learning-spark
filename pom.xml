@@ -7,6 +7,13 @@
     <artifactId>learning-spark</artifactId>
     <version>1.0</version>
 
+    <properties>
+        <junit.version>4.12</junit.version>
+        <junit.jupiter.version>5.0.0-RC2</junit.jupiter.version>
+        <junit.vintage.version>${junit.version}.0-RC2</junit.vintage.version>
+        <junit.platform.version>1.0.0-RC2</junit.platform.version>
+    </properties>
+
     <!-- library dependencies -->
     <dependencies>
         <dependency>
@@ -25,8 +32,27 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.0.0-RC2</version>
+            <version>${junit.jupiter.version}</version>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
+            <version>${junit.platform.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.jupiter.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.jupiter.version}</version>
         </dependency>
 
     </dependencies>
@@ -40,7 +66,7 @@
                     <dependency>
                         <groupId>org.junit.platform</groupId>
                         <artifactId>junit-platform-surefire-provider</artifactId>
-                        <version>1.0.0-RC2</version>
+                        <version>${junit.platform.version}</version>
                     </dependency>
                 </dependencies>
             </plugin>

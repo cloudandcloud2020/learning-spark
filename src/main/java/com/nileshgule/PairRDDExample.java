@@ -12,7 +12,7 @@ import java.util.List;
 public class PairRDDExample {
     public static void main(String[] args) {
         SparkConf conf=new SparkConf().setAppName("Pair RDD example");
-
+        conf.set("spark.driver.allowMultipleContexts", "true");
         conf.setMaster("local[*]");
 
         JavaSparkContext context = new JavaSparkContext(conf);
