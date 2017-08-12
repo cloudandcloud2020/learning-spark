@@ -21,6 +21,6 @@ hs_err_pid*
 .idea
 .DS_Store
 target/**
-
+ml-latest/**
 #AWS EMR related files
 *.pem
