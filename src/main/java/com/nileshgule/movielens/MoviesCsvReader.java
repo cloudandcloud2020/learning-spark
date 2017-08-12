@@ -22,5 +22,7 @@ public class MoviesCsvReader {
 
         df.select("movieId", "title", "genres")
                 .show(10, false);
+
+        System.out.println("Total movies in collection = " + df.count());
     }
 }
