@@ -18,9 +18,9 @@ public class MoviesCsvReader {
                 .format("com.databricks.spark.csv")
                 .option("inferSchema", "true")
                 .option("header", "true")
-                .load("/ml-latest/movies.csv");
+                .load("ml-latest/movies.csv");
 
-        df.select("movieid", "title")
+        df.select("movieId", "title", "genres")
                 .show(10, false);
     }
 }
