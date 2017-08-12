@@ -6,7 +6,7 @@ The details of the data contained within the dataset can be found [here](http://
 
 Assumption is that the extracted contents of the zip file are available in folder named `ml-latest` in the root directory of the project
 
-### Run wordcount program
+### Run MoviesCsvReader program
 
 ```bash
 spark-submit --packages com.databricks:spark-csv_2.10:1.5.0 \
@@ -14,10 +14,31 @@ spark-submit --packages com.databricks:spark-csv_2.10:1.5.0 \
 --master local \
 --deploy-mode client \
 --executor-memory 2g \
---name WordCount \
+--name MoviesCsvReader \
 --conf "spark.app.id=MoviesCsvReader" \
 target/learning-spark-1.0.jar
 ```
 
 ***Note:***
 Make sure to pass the spark-csv package during spark-submit using `--packages com.databricks:spark-csv_2.10:1.5.0`, otherwise runtime exception of classNotFound is thrown
+
+### Run RatingsCsvReader program
+
+```bash
+spark-submit --packages com.databricks:spark-csv_2.10:1.5.0 \
+--class com.nileshgule.movielens.RatingsCsvReader \
+--master local \
+--deploy-mode client \
+--executor-memory 2g \
+--name RatingsCsvReader \
+--conf "spark.app.id=RatingsCsvReader" \
+target/learning-spark-1.0.jar
+
+spark-submit --packages com.databricks:spark-csv_2.10:1.5.0 \
+--class com.nileshgule.movielens.RatingsCsvReader \
+--master local \
+--deploy-mode client \
+--name RatingsCsvReader \
+--conf "spark.app.id=RatingsCsvReader" \
+target/learning-spark-1.0.jar
+```
