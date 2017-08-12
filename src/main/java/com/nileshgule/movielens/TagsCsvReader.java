@@ -5,9 +5,9 @@ import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.DataFrame;
 import org.apache.spark.sql.SQLContext;
 
-public class RatingsCsvReader {
+public class TagsCsvReader {
     public static void main(String[] args) {
-        SparkConf conf = new SparkConf().setAppName("Movie Lens Movies CSV Reader");
+        SparkConf conf = new SparkConf().setAppName("Movie Lens Tags CSV Reader");
 
         JavaSparkContext context = new JavaSparkContext(conf);
 
@@ -17,14 +17,14 @@ public class RatingsCsvReader {
                 .format("com.databricks.spark.csv")
                 .option("inferSchema", "true")
                 .option("header", "true")
-                .load("ml-latest/ratings.csv");
+                .load("ml-latest/tags.csv");
 
-        DataFrame ratingsDF = df.select("userId", "movieId", "rating", "timestamp");
+        DataFrame tagsDF = df.select("userId", "movieId", "tag", "timestamp");
 
-        ratingsDF.cache();
+        tagsDF.cache();
 
-        ratingsDF.show(10, false);
+        tagsDF.show(10, false);
 
-        System.out.println("Total ratings in collection = " + ratingsDF.count());
+        System.out.println("Total tags in collection = " + tagsDF.count());
     }
 }

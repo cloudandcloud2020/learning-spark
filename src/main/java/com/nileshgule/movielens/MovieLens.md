@@ -42,3 +42,16 @@ spark-submit --packages com.databricks:spark-csv_2.10:1.5.0 \
 --conf "spark.app.id=RatingsCsvReader" \
 target/learning-spark-1.0.jar
 ```
+
+### Run TagsCsvReader program
+
+```bash
+spark-submit --packages com.databricks:spark-csv_2.10:1.5.0 \
+--class com.nileshgule.movielens.TagsCsvReader \
+--master local \
+--deploy-mode client \
+--executor-memory 2g \
+--name TagsCsvReader \
+--conf "spark.app.id=TagsCsvReader" \
+target/learning-spark-1.0.jar
+```
