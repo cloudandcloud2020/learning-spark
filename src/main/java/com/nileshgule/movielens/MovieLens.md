@@ -46,7 +46,28 @@ target/learning-spark-1.0.jar
 ### Run TagsCsvReader program
 
 ```bash
-spark-submit --packages com.databricks:spark-csv_2.10:1.5.0 \
+spark-submit --packages com.databricks:spark-csv_2.10:1.5.0,com.groupon.sparklint:sparklint-spark163_2.10:1.0.8 \
+--conf spark.extraListeners=com.groupon.sparklint.SparklintListener \
+--class com.nileshgule.movielens.TagsCsvReader \
+--master local \
+--deploy-mode client \
+--executor-memory 2g \
+--name TagsCsvReader \
+--conf "spark.app.id=TagsCsvReader" \
+target/learning-spark-1.0.jar
+
+spark-submit --conf spark.extraListeners=com.groupon.sparklint.SparklintListener \
+--packages com.databricks:spark-csv_2.10:1.5.0 \
+--class com.nileshgule.movielens.TagsCsvReader \
+--master local \
+--deploy-mode client \
+--executor-memory 2g \
+--name TagsCsvReader \
+--conf "spark.app.id=TagsCsvReader" \
+target/learning-spark-1.0.jar
+
+spark-submit \
+--packages com.databricks:spark-csv_2.10:1.5.0 \
 --class com.nileshgule.movielens.TagsCsvReader \
 --master local \
 --deploy-mode client \

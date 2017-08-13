@@ -13,18 +13,23 @@ public class RatingsCsvReader {
 
         SQLContext sqlContext = new SQLContext(context);
 
+        // Todo : Rea csv file as parameter to the program
         DataFrame df = sqlContext.read()
                 .format("com.databricks.spark.csv")
                 .option("inferSchema", "true")
                 .option("header", "true")
                 .load("ml-latest/ratings.csv");
 
-        DataFrame ratingsDF = df.select("userId", "movieId", "rating", "timestamp");
+        df.cache();
 
-        ratingsDF.cache();
+        DataFrame ratingsDF = df.select("userId", "movieId", "rating", "timestamp");
 
         ratingsDF.show(10, false);
 
         System.out.println("Total ratings in collection = " + ratingsDF.count());
+
+        System.out.println("Ratings grouped by users = " + ratingsDF.distinct());
     }
+
+
 }
