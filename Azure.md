@@ -9,4 +9,6 @@ Intellij IDE can submmit jobs to HDInsight cluster directly using the [Azure Too
 
 ## Azure CLI
 To work with Azure resources using command line tools [Azure CLI](https://docs.microsoft.com/en-sg/cli/azure/install-azure-cli) can be installed.
+
+Troubleshooting [ssh connectivity](https://github.com/twright-msft/azure-content/blob/master/articles/hdinsight/hdinsight-hadoop-linux-use-ssh-unix.md) problems to the head node 
  

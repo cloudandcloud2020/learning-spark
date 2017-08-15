@@ -80,13 +80,16 @@ target/learning-spark-1.0.jar \
 The last two parameters are for start and end of the range 
 
 ```bash
-spark-submit --class com.nileshgule.PairRDDExample \
---master local \
+time spark-submit --packages com.groupon.sparklint:sparklint-spark163_2.10:1.0.8 \
+--conf spark.logConf=true \
+--conf spark.extraListeners=com.groupon.sparklint.SparklintListener \
+--class com.nileshgule.PairRDDExample \
+--master yarn \
 --deploy-mode client \
 --executor-memory 2g \
 --name PairRDDExample \
 --conf "spark.app.id=PairRDDExample" \
-target/learning-spark-1.0.jar
+jar wasb://ng-spark-2017-08-15t16-28-42-526z@ngstorageaccount.blob.core.windows.net/SparkSubmission/2017/08/15/8b1fb039-d9dc-4a79-900d-c0444caa8d7f/learning-spark-1.0.jar
 ```
 
 Refer to the [AWS-EMR](AWS-EMR.md) for details on running the Spark jobs on EMR cluster.
