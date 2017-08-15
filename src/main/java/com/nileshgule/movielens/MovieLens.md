@@ -25,9 +25,63 @@ Make sure to pass the spark-csv package during spark-submit using `--packages co
 ### Run RatingsCsvReader program
 
 ```bash
-spark-submit --packages com.databricks:spark-csv_2.10:1.5.0 \
+time spark-submit --packages com.databricks:spark-csv_2.10:1.5.0 \
 --class com.nileshgule.movielens.RatingsCsvReader \
 --master local \
+--deploy-mode client \
+--executor-memory 2g \
+--name RatingsCsvReader \
+--conf "spark.app.id=RatingsCsvReader" \
+target/learning-spark-1.0.jar
+
+time spark-submit --packages com.databricks:spark-csv_2.10:1.5.0,com.groupon.sparklint:sparklint-spark163_2.10:1.0.8 \
+--conf spark.logConf=true \
+--conf spark.extraListeners=com.groupon.sparklint.SparklintListener \
+--class com.nileshgule.movielens.RatingsCsvReader \
+--master local[2] \
+--deploy-mode client \
+--executor-memory 2g \
+--name RatingsCsvReader \
+--conf "spark.app.id=RatingsCsvReader" \
+target/learning-spark-1.0.jar
+
+time spark-submit --packages com.databricks:spark-csv_2.10:1.5.0,com.groupon.sparklint:sparklint-spark163_2.10:1.0.8 \
+--conf spark.logConf=true \
+--conf spark.extraListeners=com.groupon.sparklint.SparklintListener \
+--class com.nileshgule.movielens.RatingsCsvReader \
+--master local[4] \
+--deploy-mode client \
+--executor-memory 2g \
+--name RatingsCsvReader \
+--conf "spark.app.id=RatingsCsvReader" \
+target/learning-spark-1.0.jar
+
+time spark-submit --packages com.databricks:spark-csv_2.10:1.5.0,com.groupon.sparklint:sparklint-spark163_2.10:1.0.8 \
+--conf spark.logConf=true \
+--conf spark.extraListeners=com.groupon.sparklint.SparklintListener \
+--class com.nileshgule.movielens.RatingsCsvReader \
+--master local[4] \
+--deploy-mode client \
+--executor-memory 4g \
+--name RatingsCsvReader \
+--conf "spark.app.id=RatingsCsvReader" \
+target/learning-spark-1.0.jar
+
+time spark-submit --packages com.databricks:spark-csv_2.10:1.5.0,com.groupon.sparklint:sparklint-spark163_2.10:1.0.8 \
+--conf spark.logConf=true \
+--conf spark.extraListeners=com.groupon.sparklint.SparklintListener \
+--class com.nileshgule.movielens.RatingsCsvReader \
+--master local[2] \
+--deploy-mode client \
+--executor-memory 4g \
+--name RatingsCsvReader \
+--conf "spark.app.id=RatingsCsvReader" \
+target/learning-spark-1.0.jar
+
+
+time spark-submit --packages com.databricks:spark-csv_2.10:1.5.0 \
+--class com.nileshgule.movielens.RatingsCsvReader \
+--master local[4] \
 --deploy-mode client \
 --executor-memory 2g \
 --name RatingsCsvReader \

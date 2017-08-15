@@ -20,15 +20,21 @@ public class RatingsCsvReader {
                 .option("header", "true")
                 .load("ml-latest/ratings.csv");
 
-        df.cache();
+//        df.cache();
 
         DataFrame ratingsDF = df.select("userId", "movieId", "rating", "timestamp");
 
         ratingsDF.show(10, false);
 
+        ratingsDF.cache();
+
         System.out.println("Total ratings in collection = " + ratingsDF.count());
 
         System.out.println("Ratings grouped by users = " + ratingsDF.distinct());
+
+        System.out.println("Grouping movies by rating");
+
+        ratingsDF.groupBy("rating").count().show();
     }
 
 

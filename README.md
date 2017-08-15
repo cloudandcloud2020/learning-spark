@@ -33,6 +33,10 @@ mvn compile
 mvn package
 ```
 
+*Note:* In order to run the spark-submit command with more than 1 thread, zsh throws error. To overcome the error use the following option
+```bash
+setopt nonomatch
+```
 
 ### Run wordcount program
 
