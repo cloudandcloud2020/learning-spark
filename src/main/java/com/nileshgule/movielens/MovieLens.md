@@ -98,7 +98,8 @@ spark-submit \
 --deploy-mode client \
 --name RatingsCsvReader \
 --conf "spark.app.id=RatingsCsvReader" \
-target/learning-spark-1.0.jar ml-latest/ratings.csv
+target/learning-spark-1.0.jar \
+ml-latest/ratings.csv
 ```
 
 ### Run TagsCsvReader program

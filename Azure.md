@@ -56,7 +56,7 @@ spark-submit \
 --class com.nileshgule.PairRDDExample \
 --master yarn \
 --deploy-mode cluster \
---executor-memory 3g \
+--executor-memory 2g \
 --name PairRDDExample \
 --conf "spark.app.id=PairRDDExample" \
 wasb://ng-spark-2017-08-18t14-24-10-259z@ngstorageaccount.blob.core.windows.net/learning-spark-1.0.jar
@@ -67,9 +67,10 @@ spark-submit \
 --class com.nileshgule.movielens.RatingsCsvReader \
 --master yarn \
 --deploy-mode cluster \
---executor-memory 3g \
+--executor-memory 1g \
 --name RatingCSVReader \
 --conf "spark.app.id=RatingCsvReader" \
-wasb://ng-spark-2017-08-18t14-24-10-259z@ngstorageaccount.blob.core.windows.net/learning-spark-1.0.jar
+wasb://ng-spark-2017-08-18t14-24-10-259z@ngstorageaccount.blob.core.windows.net/learning-spark-1.0.jar \
+wasb://ng-spark-2017-08-18t14-24-10-259z@ngstorageaccount.blob.core.windows.net/movielense_dataset/ratings.csv
 
 ```
