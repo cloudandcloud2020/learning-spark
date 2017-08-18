@@ -6,6 +6,9 @@ The details of the data contained within the dataset can be found [here](http://
 
 Assumption is that the extracted contents of the zip file are available in folder named `ml-latest` in the root directory of the project
 
+To fix the error with zsh while running parallel option for spark master local[2] run the following command before submitting the spark-submit
+`setopt nonomatch` 
+
 ### Run MoviesCsvReader program
 
 ```bash
@@ -71,7 +74,7 @@ time spark-submit --packages com.databricks:spark-csv_2.10:1.5.0,com.groupon.spa
 --conf spark.logConf=true \
 --conf spark.extraListeners=com.groupon.sparklint.SparklintListener \
 --class com.nileshgule.movielens.RatingsCsvReader \
---master local[2] \
+--master local \
 --deploy-mode client \
 --executor-memory 4g \
 --name RatingsCsvReader \
@@ -88,13 +91,14 @@ time spark-submit --packages com.databricks:spark-csv_2.10:1.5.0 \
 --conf "spark.app.id=RatingsCsvReader" \
 target/learning-spark-1.0.jar
 
-spark-submit --packages com.databricks:spark-csv_2.10:1.5.0 \
+spark-submit \
+--packages com.databricks:spark-csv_2.10:1.5.0 \
 --class com.nileshgule.movielens.RatingsCsvReader \
 --master local \
 --deploy-mode client \
 --name RatingsCsvReader \
 --conf "spark.app.id=RatingsCsvReader" \
-target/learning-spark-1.0.jar
+target/learning-spark-1.0.jar ml-latest/ratings.csv
 ```
 
 ### Run TagsCsvReader program

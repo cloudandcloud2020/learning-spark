@@ -80,6 +80,37 @@ target/learning-spark-1.0.jar \
 The last two parameters are for start and end of the range 
 
 ```bash
+time sudo spark-submit \
+--packages com.groupon.sparklint:sparklint-spark163_2.10:1.0.8 \
+--conf spark.logConf=true \
+--conf spark.extraListeners=com.groupon.sparklint.SparklintListener \
+--class com.nileshgule.PairRDDExample \
+--master yarn \
+--deploy-mode client \
+--executor-memory 2g \
+--name PairRDDExample \
+--conf "spark.app.id=PairRDDExample" \
+https://ngstorageaccount.blob.core.windows.net/ng-spark-2017-08-15t16-28-42-526z/learning-spark-1.0.jar
+
+wasb://ngstorageaccount.blob.core.windows.net/ng-spark-2017-08-18t14-24-10-259z/learning-spark-1.0.jar, expected: 
+wasb://ng-spark-2017-08-18t14-24-10-259z@ngstorageaccount.blob.core.windows.net
+
+time sudo spark-submit \
+--packages com.groupon.sparklint:sparklint-spark163_2.10:1.0.8 \
+--conf spark.logConf=true \
+--conf spark.extraListeners=com.groupon.sparklint.SparklintListener \
+--class com.nileshgule.PairRDDExample \
+--master yarn \
+--deploy-mode cluster \
+--executor-memory 2g \
+--name PairRDDExample \
+--conf "spark.app.id=PairRDDExample" \
+wasb://ng-spark-2017-08-18t14-24-10-259z@ngstorageaccount.blob.core.windows.net/learning-spark-1.0.jar
+
+
+
+```
+
 time spark-submit --packages com.groupon.sparklint:sparklint-spark163_2.10:1.0.8 \
 --conf spark.logConf=true \
 --conf spark.extraListeners=com.groupon.sparklint.SparklintListener \
@@ -89,9 +120,13 @@ time spark-submit --packages com.groupon.sparklint:sparklint-spark163_2.10:1.0.8
 --executor-memory 2g \
 --name PairRDDExample \
 --conf "spark.app.id=PairRDDExample" \
-jar wasb://ng-spark-2017-08-15t16-28-42-526z@ngstorageaccount.blob.core.windows.net/SparkSubmission/2017/08/15/8b1fb039-d9dc-4a79-900d-c0444caa8d7f/learning-spark-1.0.jar
-```
+https://ngstorageaccount.blob.core.windows.net/ng-spark-2017-08-17t14-58-18-512z/SparkSubmission/2017/08/17/92528012-ad26-4f36-9ef2-6174305eae2a/learning-spark-1.0.jar
+
+
+
+
 
 Refer to the [AWS-EMR](AWS-EMR.md) for details on running the Spark jobs on EMR cluster.
 
 Refer to the [Azure](Azure.md) for details on running the Spark jobs on Microsoft Azure HDInsights cluster.
+

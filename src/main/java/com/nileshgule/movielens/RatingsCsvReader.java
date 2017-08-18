@@ -13,12 +13,14 @@ public class RatingsCsvReader {
 
         SQLContext sqlContext = new SQLContext(context);
 
-        // Todo : Rea csv file as parameter to the program
+//        String ratingsCsvPath = "ml-latest/ratings.csv";
+        String ratingsCsvPath = args[0];
+
         DataFrame df = sqlContext.read()
                 .format("com.databricks.spark.csv")
                 .option("inferSchema", "true")
                 .option("header", "true")
-                .load("ml-latest/ratings.csv");
+                .load(ratingsCsvPath);
 
 //        df.cache();
 
