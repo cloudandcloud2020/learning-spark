@@ -79,7 +79,7 @@ time spark-submit --packages com.databricks:spark-csv_2.10:1.5.0,com.groupon.spa
 --executor-memory 4g \
 --name RatingsCsvReader \
 --conf "spark.app.id=RatingsCsvReader" \
-target/learning-spark-1.0.jar
+target/learning-spark-1.0.jar ml-latest/ratings.csv
 
 
 time spark-submit --packages com.databricks:spark-csv_2.10:1.5.0 \

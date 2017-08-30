@@ -75,7 +75,7 @@ spark-submit --class com.nileshgule.CachingExample \
 target/learning-spark-1.0.jar \
 1 100
 ```
-
+---
 ### Run PairRDDExample program
 The last two parameters are for start and end of the range 
 
@@ -109,8 +109,6 @@ wasb://ng-spark-2017-08-18t14-24-10-259z@ngstorageaccount.blob.core.windows.net/
 
 
 
-```
-
 time spark-submit --packages com.groupon.sparklint:sparklint-spark163_2.10:1.0.8 \
 --conf spark.logConf=true \
 --conf spark.extraListeners=com.groupon.sparklint.SparklintListener \
@@ -122,11 +120,11 @@ time spark-submit --packages com.groupon.sparklint:sparklint-spark163_2.10:1.0.8
 --conf "spark.app.id=PairRDDExample" \
 https://ngstorageaccount.blob.core.windows.net/ng-spark-2017-08-17t14-58-18-512z/SparkSubmission/2017/08/17/92528012-ad26-4f36-9ef2-6174305eae2a/learning-spark-1.0.jar
 
-
-
-
+```
+------
 
 Refer to the [AWS-EMR](AWS-EMR.md) for details on running the Spark jobs on EMR cluster.
 
 Refer to the [Azure](Azure.md) for details on running the Spark jobs on Microsoft Azure HDInsights cluster.
 
+https://github.com/yuvarajac/dotnet-2017.git
