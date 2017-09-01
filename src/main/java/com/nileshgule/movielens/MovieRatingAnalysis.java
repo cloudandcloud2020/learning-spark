@@ -4,6 +4,7 @@ import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.DataFrame;
 import org.apache.spark.sql.SQLContext;
+import static org.apache.spark.sql.functions.*;
 
 public class MovieRatingAnalysis {
     public static void main(String[] args) {
@@ -20,6 +21,8 @@ public class MovieRatingAnalysis {
 
         DataFrame ratings = ratingsDataFrame.select("userId", "movieId", "rating");
 
+        ratings.cache();
+
         DataFrame moviesDataFrame = CsvUtils.getDataFrame(sqlContext, moviesFilePath)
                 .select("movieId", "title");
 
@@ -28,10 +31,11 @@ public class MovieRatingAnalysis {
         DataFrame moviesAndRatingsDataFrame = ratings.join(moviesDataFrame, "movieId");
 
         moviesAndRatingsDataFrame.filter("rating > 3")
+                .sort(desc("rating"))
                 .groupBy("movieId", "title", "rating")
                 .count()
-                .orderBy("rating")
-//                .select("movieId", "title", "rating")
+                .sort(desc("count"))
+//                .sort(desc("rating"))
                 .show(10);
     }
 
