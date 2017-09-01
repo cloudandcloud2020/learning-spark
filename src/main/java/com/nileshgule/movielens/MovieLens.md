@@ -137,6 +137,7 @@ target/learning-spark-1.0.jar
 ```
 
 ```bash
+time \
 spark-submit \
 --packages com.databricks:spark-csv_2.10:1.5.0 \
 --class com.nileshgule.movielens.MovieRatingAnalysis \
@@ -144,6 +145,26 @@ spark-submit \
 --deploy-mode client \
 --name MovieRatingAnalysis \
 --conf "spark.app.id=MovieRatingAnalysis" \
+target/learning-spark-1.0.jar \
+ml-latest/ratings.csv \
+ml-latest/movies.csv
+```
+
+Time taken with cache enabled
+231.71s user 8.07s system 114% cpu 3:29.34 total
+
+Time taken with cache disabled
+271.15s user 8.78s system 115% cpu 4:02.76 total
+
+```bash
+time \
+spark-submit \
+--packages com.databricks:spark-csv_2.10:1.5.0 \
+--class com.nileshgule.movielens.UserAnalysis \
+--master local \
+--deploy-mode client \
+--name UserAnalysis \
+--conf "spark.app.id=UserAnalysis" \
 target/learning-spark-1.0.jar \
 ml-latest/ratings.csv \
 ml-latest/movies.csv
