@@ -13,7 +13,7 @@ public class RatingsCsvReader {
 
         SQLContext sqlContext = new SQLContext(context);
 
-//        String ratingsCsvPath = "ml-latest/ratings.csv";
+    //        String ratingsCsvPath = "ml-latest/ratings.csv";
         String ratingsCsvPath = args[0];
 
         DataFrame df = sqlContext.read()

@@ -135,3 +135,16 @@ spark-submit \
 --conf "spark.app.id=TagsCsvReader" \
 target/learning-spark-1.0.jar
 ```
+
+```bash
+spark-submit \
+--packages com.databricks:spark-csv_2.10:1.5.0 \
+--class com.nileshgule.movielens.MovieRatingAnalysis \
+--master local \
+--deploy-mode client \
+--name MovieRatingAnalysis \
+--conf "spark.app.id=MovieRatingAnalysis" \
+target/learning-spark-1.0.jar \
+ml-latest/ratings.csv \
+ml-latest/movies.csv
+```
