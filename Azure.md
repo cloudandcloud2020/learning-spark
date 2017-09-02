@@ -148,7 +148,7 @@ az storage blob upload \
 --account-name ngstorageaccount \
 --account-key btQLcwrSfGXolrdtnXt0115rizP24U+JFH7M9uWQxcyQ2gASp3+lxIAe1+44U4JFMvBH8ZDZT30TJh5q4p0lIg== \
 --file learning-spark-1.0.jar \
---name learning-spark-1.0-default-serializer.jar \
+--name learning-spark-1.0.jar \
 --container-name ng-spark-2017-08-18t14-24-10-259z
 ```
 
@@ -160,9 +160,9 @@ spark-submit \
 --deploy-mode cluster \
 --num-executors 2 \
 --executor-memory 3G \
---executor-cores 6 \
+--executor-cores 4 \
 --name UserAnalysis \
 --conf "spark.app.id=UserAnalysis" \
-wasb://ng-spark-2017-08-18t14-24-10-259z@ngstorageaccount.blob.core.windows.net/learning-spark-1.0-default-serializer.jar \
+wasb://ng-spark-2017-08-18t14-24-10-259z@ngstorageaccount.blob.core.windows.net/learning-spark-1.0.jar \
 wasb://ng-spark-2017-08-18t14-24-10-259z@ngstorageaccount.blob.core.windows.net/movielense_dataset/ratings.csv \
 wasb://ng-spark-2017-08-18t14-24-10-259z@ngstorageaccount.blob.core.windows.net/movielense_dataset/movies.csv

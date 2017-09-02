@@ -22,7 +22,7 @@ public class UserAnalysis {
 
         System.out.println("Total number of ratings = " + ratingsDataFrame.count());
 
-        ratingsDataFrame.cache();
+//        ratingsDataFrame.cache();
 
         DataFrame higherRatings = ratingsDataFrame.filter("rating > 3");
 
@@ -44,7 +44,13 @@ public class UserAnalysis {
 
         ratingsDataFrame.groupBy("rating")
                 .count()
+                .orderBy(desc("count"))
                 .show();
 
+        System.out.println("Top 5 users");
+        ratingsDataFrame.groupBy("userId")
+                .count()
+                .orderBy(desc("count"))
+                .show(5);
     }
 }
