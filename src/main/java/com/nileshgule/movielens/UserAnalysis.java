@@ -2,15 +2,14 @@ package com.nileshgule.movielens;
 
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.broadcast.Broadcast;
 import org.apache.spark.sql.DataFrame;
 import org.apache.spark.sql.SQLContext;
-import static org.apache.spark.sql.functions.*;
+
+import static org.apache.spark.sql.functions.desc;
 
 public class UserAnalysis {
     public static void main(String[] args) {
         SparkConf conf = new SparkConf();
-//        conf.set("spark.serializer", "org.apache.spark.serializer.KryoSerializer");
 
         JavaSparkContext sparkContext = new JavaSparkContext(conf);
         sparkContext.setLogLevel("ERROR");
@@ -18,36 +17,33 @@ public class UserAnalysis {
         SQLContext sqlContext = new SQLContext(sparkContext);
 
         String ratingsFilePath = args[0];
-        String moviesFilePath = args[1];
 
-        DataFrame ratingsDataFrame = CsvUtils.getDataFrame(sqlContext, ratingsFilePath)
-//                .select("userId", "movieId", "rating")
-                .filter("rating > 3");
+        DataFrame ratingsDataFrame = CsvUtils.getDataFrame(sqlContext, ratingsFilePath);
 
-        System.out.println("Count of ratings above 3 = " + ratingsDataFrame.count());
-//
-//        ratingsDataFrame.cache();
+        System.out.println("Total number of ratings = " + ratingsDataFrame.count());
 
-        DataFrame distinctMovieIds = ratingsDataFrame.distinct();
+        ratingsDataFrame.cache();
 
-        System.out.println("Count of distinct movie Ids = " + distinctMovieIds.count());
+        DataFrame higherRatings = ratingsDataFrame.filter("rating > 3");
 
-        DataFrame moviesDataFrame = CsvUtils.getDataFrame(sqlContext, moviesFilePath)
-                .select("movieId", "title");
-//                .filter("movieId in (" + distinctMovieIds.select().flatMap() + ")");
+        System.out.println("Count of ratings above 3 = " + higherRatings.count());
+        higherRatings.cache();
 
-        Broadcast<DataFrame> moviesBroadcast = sparkContext.broadcast(moviesDataFrame);
-
-//        DataFrame moviesAndRatingsDataFrame = ratingsDataFrame.join(moviesDataFrame, "movieId");
-
-//        DataFrame moviesAndRatingsDataFrame = ratingsDataFrame.join(moviesBroadcast.getValue(), "movieId");
-
-        DataFrame moviesAndRatingsDataFrame = moviesBroadcast.getValue().join(ratingsDataFrame, "movieId");
-
-        moviesAndRatingsDataFrame.groupBy("userId", "rating")
+        System.out.println("Users with most ratings > 3");
+        higherRatings.groupBy("userId", "rating")
                 .count()
                 .orderBy(desc("count"), desc("rating"))
-//                .orderBy(desc("rating"), desc("count"))
+                .show();
+
+//        System.out.println("Ratings by user 45811");
+//
+//        ratingsDataFrame.filter("userId = 45811").groupBy("rating")
+//                .count()
+//                .show();
+        System.out.println("Most commonly used rating");
+
+        ratingsDataFrame.groupBy("rating")
+                .count()
                 .show();
 
     }
