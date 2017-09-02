@@ -9,6 +9,7 @@ import static org.apache.spark.sql.functions.*;
 public class MovieRatingAnalysis {
     public static void main(String[] args) {
         SparkConf conf = new SparkConf();
+        conf.set("spark.serializer", "org.apache.spark.serializer.KryoSerializer");
 
         JavaSparkContext sparkContext = new JavaSparkContext(conf);
 

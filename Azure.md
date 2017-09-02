@@ -15,7 +15,9 @@ Troubleshooting [ssh connectivity](https://github.com/twright-msft/azure-content
 Reference to the blobstorage [commandline](https://docs.microsoft.com/en-us/cli/azure/storage/blob#uploads)
 
 To fix the ECDSA key fingerprint command run
-`ssh-keygen -R ng-spark-ssh.azurehdinsight.net`
+```bash
+ssh-keygen -R ng-spark-ssh.azurehdinsight.net
+```
 
 ### List keys & containers from blob storage
 
@@ -98,3 +100,69 @@ wasb://movielens-dataset@ngstorageaccount.blob.core.windows.net/learning-spark-1
 wasb://movielens-dataset@ngstorageaccount.blob.core.windows.net/movielens-dataset/movielense_dataset/ratings.csv
 
 ```
+
+### Run User And Rating analysis
+
+Default run without performance tuning parameters
+```bash
+time \
+spark-submit \
+--packages com.databricks:spark-csv_2.10:1.5.0 \
+--class com.nileshgule.movielens.UserAnalysis \
+--master yarn \
+--deploy-mode cluster \
+--name UserAnalysis \
+--conf "spark.app.id=UserAnalysis" \
+wasb://ng-spark-2017-08-18t14-24-10-259z@ngstorageaccount.blob.core.windows.net/learning-spark-1.0.jar \
+wasb://ng-spark-2017-08-18t14-24-10-259z@ngstorageaccount.blob.core.windows.net/movielense_dataset/ratings.csv \
+wasb://ng-spark-2017-08-18t14-24-10-259z@ngstorageaccount.blob.core.windows.net/movielense_dataset/movies.csv
+```
+
+```bash
+time \
+spark-submit \
+--packages com.databricks:spark-csv_2.10:1.5.0 \
+--class com.nileshgule.movielens.UserAnalysis \
+--master yarn \
+--deploy-mode cluster \
+--num-executors 2 \
+--executor-memory 2G \
+--executor-cores 6 \
+--name UserAnalysis \
+--conf "spark.app.id=UserAnalysis" \
+wasb://ng-spark-2017-08-18t14-24-10-259z@ngstorageaccount.blob.core.windows.net/learning-spark-1.0.jar \
+wasb://ng-spark-2017-08-18t14-24-10-259z@ngstorageaccount.blob.core.windows.net/movielense_dataset/ratings.csv \
+wasb://ng-spark-2017-08-18t14-24-10-259z@ngstorageaccount.blob.core.windows.net/movielense_dataset/movies.csv
+```
+
+az storage blob upload \
+--account-name ngstorageaccount \
+--account-key btQLcwrSfGXolrdtnXt0115rizP24U+JFH7M9uWQxcyQ2gASp3+lxIAe1+44U4JFMvBH8ZDZT30TJh5q4p0lIg== \
+--file learning-spark-1.0.jar \
+--name learning-spark-1.0.jar \
+--container-name ng-spark-2017-08-18t14-24-10-259z
+
+jar with default Java serialize
+```bash
+az storage blob upload \
+--account-name ngstorageaccount \
+--account-key btQLcwrSfGXolrdtnXt0115rizP24U+JFH7M9uWQxcyQ2gASp3+lxIAe1+44U4JFMvBH8ZDZT30TJh5q4p0lIg== \
+--file learning-spark-1.0.jar \
+--name learning-spark-1.0-default-serializer.jar \
+--container-name ng-spark-2017-08-18t14-24-10-259z
+```
+
+time \
+spark-submit \
+--packages com.databricks:spark-csv_2.10:1.5.0 \
+--class com.nileshgule.movielens.UserAnalysis \
+--master yarn \
+--deploy-mode cluster \
+--num-executors 2 \
+--executor-memory 3G \
+--executor-cores 6 \
+--name UserAnalysis \
+--conf "spark.app.id=UserAnalysis" \
+wasb://ng-spark-2017-08-18t14-24-10-259z@ngstorageaccount.blob.core.windows.net/learning-spark-1.0-default-serializer.jar \
+wasb://ng-spark-2017-08-18t14-24-10-259z@ngstorageaccount.blob.core.windows.net/movielense_dataset/ratings.csv \
+wasb://ng-spark-2017-08-18t14-24-10-259z@ngstorageaccount.blob.core.windows.net/movielense_dataset/movies.csv

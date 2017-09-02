@@ -169,3 +169,21 @@ target/learning-spark-1.0.jar \
 ml-latest/ratings.csv \
 ml-latest/movies.csv
 ```
+
+Fine tuning performance using executors and memory
+```bash
+time \
+spark-submit \
+--packages com.databricks:spark-csv_2.10:1.5.0 \
+--class com.nileshgule.movielens.UserAnalysis \
+--num-executors 3 \
+--executor-memory 2G \
+--executor-cores 3 \
+--master local \
+--deploy-mode client \
+--name UserAnalysis \
+--conf "spark.app.id=UserAnalysis" \
+target/learning-spark-1.0.jar \
+ml-latest/ratings.csv \
+ml-latest/movies.csv
+```
