@@ -2,6 +2,7 @@ package com.nileshgule.movielens.functions;
 
 
 import com.nileshgule.movielens.models.MovieModel;
+import com.nileshgule.movielens.models.MovieModelBuilder;
 import org.apache.spark.api.java.function.Function;
 
 public class CreateMovieFunction implements Function<String, MovieModel> {
@@ -14,7 +15,11 @@ public class CreateMovieFunction implements Function<String, MovieModel> {
         String title = movieDetails[1];
         String genres = movieDetails[2];
 
-        return new MovieModel(movieId, title, genres);
+        return new MovieModelBuilder()
+                .setMovieId(movieId)
+                .setTitle(title)
+                .setGenres(genres)
+                .createMovieModel();
 
     }
 }
