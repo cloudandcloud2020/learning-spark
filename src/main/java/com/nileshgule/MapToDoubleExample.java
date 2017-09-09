@@ -12,6 +12,7 @@ public class MapToDoubleExample {
         SparkConf conf=new SparkConf().setAppName("MapToDouble Example");
 
         JavaSparkContext context = new JavaSparkContext(conf);
+        context.setLogLevel("ERROR");
 
         JavaRDD<Integer> numbers = context.parallelize(Arrays.asList(1, 2, 3, 4));
 

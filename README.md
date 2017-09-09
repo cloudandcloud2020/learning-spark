@@ -123,6 +123,18 @@ https://ngstorageaccount.blob.core.windows.net/ng-spark-2017-08-17t14-58-18-512z
 ```
 ------
 
+### Run BasicRDD program
+
+```bash
+time spark-submit --class com.nileshgule.BasicRDD \
+--master local \
+--deploy-mode client \
+--executor-memory 2g \
+--name BasicRDD \
+--conf "spark.app.id=BasicRDD" \
+target/learning-spark-1.0.jar
+```
+
 Refer to the [AWS-EMR](AWS-EMR.md) for details on running the Spark jobs on EMR cluster.
 
 Refer to the [Azure](Azure.md) for details on running the Spark jobs on Microsoft Azure HDInsights cluster.
