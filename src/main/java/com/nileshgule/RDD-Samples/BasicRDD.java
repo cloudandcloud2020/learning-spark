@@ -5,6 +5,8 @@ import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.storage.StorageLevel;
 
+import java.util.List;
+
 public class BasicRDD {
     public static void main(String[] args) {
         SparkConf conf=new SparkConf().setAppName("MapToDouble Example");
@@ -30,5 +32,11 @@ public class BasicRDD {
         System.out.println("Lines containing Apache & Spark = " + union.count());
 
         System.out.println("Distinct lines containing Apache & Spark = " + union.distinct().count());
+
+        List<String> fiveLines = union.take(5);
+        for (String line : fiveLines) {
+            System.out.println("line = " + line);
+        }
+
     }
 }
