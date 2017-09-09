@@ -160,6 +160,19 @@ time spark-submit --class com.nileshgule.RDDSamples.RDDSetExample \
 target/learning-spark-1.0.jar
 ```
 
+### Run MoviesRDDExample program
+
+```bash
+time spark-submit --class com.nileshgule.RDDSamples.RatingsRDDExample \
+--master local \
+--deploy-mode client \
+--executor-memory 2g \
+--name RatingsRDDExample \
+--conf "spark.app.id=RatingsRDDExample" \
+target/learning-spark-1.0.jar \
+ml-latest/ratings.csv
+```
+
 Refer to the [AWS-EMR](AWS-EMR.md) for details on running the Spark jobs on EMR cluster.
 
 Refer to the [Azure](Azure.md) for details on running the Spark jobs on Microsoft Azure HDInsights cluster.

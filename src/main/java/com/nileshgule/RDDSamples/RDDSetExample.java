@@ -16,6 +16,9 @@ public class RDDSetExample {
         JavaRDD<String> subwayMenu = context.parallelize(Arrays.asList("Sandwitch", "Soup", "Cookies"));
         JavaRDD<String> pastamaniaMenu = context.parallelize(Arrays.asList("Pasta", "Pizza", "Soup", "cold drinks"));
 
+        subwayMenu.cache();
+        pastamaniaMenu.collectAsync();
+
         JavaRDD<String> union = subwayMenu.union(pastamaniaMenu);
 
         System.out.println("Total items available in menu = " + union.count());
@@ -35,7 +38,7 @@ public class RDDSetExample {
         }
 
         System.out.println();
-        
+
         JavaRDD<String> subtract = subwayMenu.subtract(pastamaniaMenu);
 
         System.out.println("subtract.count() = " + subtract.count());
