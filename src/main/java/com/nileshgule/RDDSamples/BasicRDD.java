@@ -1,4 +1,4 @@
-package com.nileshgule;
+package com.nileshgule.RDDSamples;
 
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;

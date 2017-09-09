@@ -126,13 +126,26 @@ https://ngstorageaccount.blob.core.windows.net/ng-spark-2017-08-17t14-58-18-512z
 ### Run BasicRDD program
 
 ```bash
-time spark-submit --class com.nileshgule.BasicRDD \
+time spark-submit --class com.nileshgule.RDDSamples.BasicRDD \
 --master local \
 --deploy-mode client \
 --executor-memory 2g \
 --name BasicRDD \
 --conf "spark.app.id=BasicRDD" \
 target/learning-spark-1.0.jar
+```
+
+### Run MoviesRDDExample program
+
+```bash
+time spark-submit --class com.nileshgule.RDDSamples.MoviesRDDExample \
+--master local \
+--deploy-mode client \
+--executor-memory 2g \
+--name MoviesRDDExample \
+--conf "spark.app.id=MoviesRDDExample" \
+target/learning-spark-1.0.jar \
+ml-latest/movies.csv
 ```
 
 Refer to the [AWS-EMR](AWS-EMR.md) for details on running the Spark jobs on EMR cluster.
