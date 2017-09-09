@@ -10,14 +10,14 @@ import java.util.List;
 
 public class MoviesRDDExample {
     public static void main(String[] args) {
-        SparkConf conf=new SparkConf().setAppName("MapToDouble Example");
+        SparkConf conf=new SparkConf().setAppName("Movies RDD Example");
 
         JavaSparkContext context = new JavaSparkContext(conf);
         context.setLogLevel("ERROR");
 
         String inputFileName = args[0];
-        JavaRDD<String> inputFile = context.textFile(inputFileName);
-        JavaRDD<MovieModel> movies = inputFile.map(new CreateMovieFunction());
+        JavaRDD<String> lines = context.textFile(inputFileName);
+        JavaRDD<MovieModel> movies = lines.map(new CreateMovieFunction());
 
         System.out.println("movies.count() = " + movies.count());
 
