@@ -6,6 +6,12 @@ Intellij IDE can submmit jobs to HDInsight cluster directly using the [Azure Too
 
 **Most Important:** Don't forget to [delete the cluster](https://docs.microsoft.com/en-us/azure/hdinsight/hdinsight-delete-cluster)
 
+### To display hidden files & folder in Safari
+Use the Key combination of `command + shift + .` to toggle the hidden files visibility
+To show the files in finder use the command
+```bash
+defaults write com.apple.finder AppleShowAllFiles YES
+```
 
 ## Azure CLI
 To work with Azure resources using command line tools [Azure CLI](https://docs.microsoft.com/en-sg/cli/azure/install-azure-cli) can be installed.
@@ -86,8 +92,9 @@ spark-submit \
 --name PairRDDExample \
 --conf "spark.app.id=PairRDDExample" \
 wasb://ng-spark-2017-08-18t14-24-10-259z@ngstorageaccount.blob.core.windows.net/learning-spark-1.0.jar
+```
 
-
+```bash
 spark-submit \
 --packages com.databricks:spark-csv_2.10:1.5.0 \
 --class com.nileshgule.movielens.RatingsCsvReader \
@@ -135,12 +142,18 @@ wasb://ng-spark-2017-08-18t14-24-10-259z@ngstorageaccount.blob.core.windows.net/
 wasb://ng-spark-2017-08-18t14-24-10-259z@ngstorageaccount.blob.core.windows.net/movielense_dataset/movies.csv
 ```
 
+### Upload application jar to blob storage
+
+```bash 
+
 az storage blob upload \
 --account-name ngstorageaccount \
 --account-key btQLcwrSfGXolrdtnXt0115rizP24U+JFH7M9uWQxcyQ2gASp3+lxIAe1+44U4JFMvBH8ZDZT30TJh5q4p0lIg== \
 --file learning-spark-1.0.jar \
 --name learning-spark-1.0.jar \
 --container-name ng-spark-2017-08-18t14-24-10-259z
+
+```
 
 jar with default Java serialize
 ```bash
@@ -166,3 +179,12 @@ spark-submit \
 wasb://ng-spark-2017-08-18t14-24-10-259z@ngstorageaccount.blob.core.windows.net/learning-spark-1.0.jar \
 wasb://ng-spark-2017-08-18t14-24-10-259z@ngstorageaccount.blob.core.windows.net/movielense_dataset/ratings.csv \
 wasb://ng-spark-2017-08-18t14-24-10-259z@ngstorageaccount.blob.core.windows.net/movielense_dataset/movies.csv
+
+### Run HDFS commands using wasb
+
+```bash
+hdfs dfs -ls wasb://ng-spark-2017-08-18t14-24-10-259z@ngstorageaccount.blob.core.windows.net/movielense_dataset/
+
+hdfs dfs -ls /movielense_dataset/
+```
+

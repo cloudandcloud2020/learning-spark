@@ -51,7 +51,7 @@ public class RatingsRDDExample {
         List<Tuple2<String, Iterable<Double>>> ten = userRatingsByKey.take(10);
         for (Tuple2<String, Iterable<Double>> item : ten){
             System.out.println("item = " + item);
-            
+
         }
 
 

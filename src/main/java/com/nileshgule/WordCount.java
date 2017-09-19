@@ -14,10 +14,6 @@ public class WordCount {
 
     public static void main(String[] args){
 
-        // TODO
-        // Parse input arguments using google argument checke library
-        // make input & output paths configurable via commandline
-
         SparkConf conf=new SparkConf().setAppName("Word Count");
 
         JavaSparkContext context = new JavaSparkContext(conf);
@@ -28,24 +24,12 @@ public class WordCount {
 
         Map<String, Long> countByValue = tokenized.countByValue();
 
+//        JavaRDD<String> wordsGreaterThanThreeCharacters = tokenized.filter(x -> x.length() > 3);
+
+//        Map<String, Long> countByValue = wordsGreaterThanThreeCharacters.countByValue();
+
         System.out.println("Number of words using countByValue = " + countByValue);
-
-        JavaPairRDD<String, Integer> wordCountPair = tokenized.mapToPair(word -> new Tuple2<>(word, 1));
-
-        JavaPairRDD<String, Integer> counts = wordCountPair.reduceByKey((accValue, newValue) -> accValue + newValue);
-
-        counts.cache();
-
-        JavaPairRDD<String, Integer> sortedCounts = counts.sortByKey(false);
-        System.out.printf("Number of words = %d%n", counts.count());
-
-        System.out.println(sortedCounts.collect());
-
-        JavaPairRDD<String, Integer> filteredCount = counts.filter(c -> c._1.length() > 5);
-
-        System.out.println("Number of words having length greater than 5 ");
-
-        System.out.println("counts = " + filteredCount.count());
+        System.out.println("Number of words = " + countByValue.size());
 
     }
 }
