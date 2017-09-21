@@ -176,5 +176,3 @@ ml-latest/ratings.csv
 Refer to the [AWS-EMR](AWS-EMR.md) for details on running the Spark jobs on EMR cluster.
 
 Refer to the [Azure](Azure.md) for details on running the Spark jobs on Microsoft Azure HDInsights cluster.
-
-https://github.com/yuvarajac/dotnet-2017.git

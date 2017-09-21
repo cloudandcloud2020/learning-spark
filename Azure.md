@@ -20,7 +20,7 @@ Troubleshooting [ssh connectivity](https://github.com/twright-msft/azure-content
 
 Reference to the blobstorage [commandline](https://docs.microsoft.com/en-us/cli/azure/storage/blob#uploads)
 
-To fix the ECDSA key fingerprint command run
+### To fix the ECDSA key fingerprint command run
 ```bash
 ssh-keygen -R ng-spark-ssh.azurehdinsight.net
 ```
@@ -155,7 +155,8 @@ az storage blob upload \
 
 ```
 
-jar with default Java serialize
+Upload jar with default Java serialize
+
 ```bash
 az storage blob upload \
 --account-name ngstorageaccount \
@@ -164,6 +165,7 @@ az storage blob upload \
 --name learning-spark-1.0.jar \
 --container-name ng-spark-2017-08-18t14-24-10-259z
 ```
+
 
 time \
 spark-submit \

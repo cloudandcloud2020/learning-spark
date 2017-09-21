@@ -1,0 +1,106 @@
+# Demo commands for Azure Meetup - 21 Sept 2017
+
+### Run wordcount program locally
+
+```bash
+
+spark-submit \
+--class com.nileshgule.WordCount \
+--master local \
+--deploy-mode client \
+--executor-memory 2g \
+--name WordCount \
+--conf "spark.app.id=WordCount" \
+target/learning-spark-1.0.jar
+
+```
+
+### Login to head node using SSH
+```bash
+ssh sshuser@ng-spark-ssh.azurehdinsight.net
+```
+
+### To fix the ECDSA key fingerprint command run
+```bash
+ssh-keygen -R ng-spark-ssh.azurehdinsight.net
+```
+
+###Upload Jar to blob storage account
+
+```bash
+
+az storage blob upload \
+--account-name ngstorageaccount \
+--account-key btQLcwrSfGXolrdtnXt0115rizP24U+JFH7M9uWQxcyQ2gASp3+lxIAe1+44U4JFMvBH8ZDZT30TJh5q4p0lIg== \
+--file learning-spark-1.0.jar \
+--name learning-spark-1.0.jar \
+--container-name ng-spark-2017-08-18t14-24-10-259z
+
+```
+
+### Run HDFS commands
+
+```bash
+
+hdfs dfs -ls -R -h wasb://ng-spark-2017-08-18t14-24-10-259z@ngstorageaccount.blob.core.windows.net/learning-spark-1.0.jar
+
+hdfs dfs -ls -R -h /learning-spark-1.0.jar
+
+hdfs dfs -ls -R -h wasb://ng-spark-2017-08-18t14-24-10-259z@ngstorageaccount.blob.core.windows.net/movielense_dataset/
+
+hdfs dfs -ls -R -h /movielense_dataset/
+```
+
+### Run simple PairRDD example program on HDInsight
+```bash
+
+spark-submit \
+--class com.nileshgule.PairRDDExample \
+--master yarn \
+--deploy-mode cluster \
+--executor-memory 2g \
+--name PairRDDExample \
+--conf "spark.app.id=PairRDDExample" \
+wasb://ng-spark-2017-08-18t14-24-10-259z@ngstorageaccount.blob.core.windows.net/learning-spark-1.0.jar
+
+```
+
+### Run Movie rating analysis on Movielens dataset
+
+```bash
+
+time \
+spark-submit \
+--packages com.databricks:spark-csv_2.10:1.5.0 \
+--class com.nileshgule.movielens.MovieRatingAnalysis \
+--master yarn \
+--deploy-mode cluster \
+--num-executors 2 \
+--executor-memory 3G \
+--executor-cores 4 \
+--name MovieRatingAnalysis \
+--conf "spark.app.id=MovieRatingAnalysis" \
+wasb://ng-spark-2017-08-18t14-24-10-259z@ngstorageaccount.blob.core.windows.net/learning-spark-1.0.jar \
+wasb://ng-spark-2017-08-18t14-24-10-259z@ngstorageaccount.blob.core.windows.net/movielense_dataset/ratings.csv \
+wasb://ng-spark-2017-08-18t14-24-10-259z@ngstorageaccount.blob.core.windows.net/movielense_dataset/movies.csv
+
+```
+
+### Run user analysis on Movielens dataset
+```bash
+
+time \
+spark-submit \
+--packages com.databricks:spark-csv_2.10:1.5.0 \
+--class com.nileshgule.movielens.UserAnalysis \
+--master yarn \
+--deploy-mode cluster \
+--num-executors 2 \
+--executor-memory 3G \
+--executor-cores 4 \
+--name UserAnalysis \
+--conf "spark.app.id=UserAnalysis" \
+wasb://ng-spark-2017-08-18t14-24-10-259z@ngstorageaccount.blob.core.windows.net/learning-spark-1.0.jar \
+wasb://ng-spark-2017-08-18t14-24-10-259z@ngstorageaccount.blob.core.windows.net/movielense_dataset/ratings.csv
+
+```
