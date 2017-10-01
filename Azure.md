@@ -35,12 +35,71 @@ az storage container list --account-name ngstorageaccount --account-key btQLcwrS
 
 ```
 
+### List keys & containers from blob storage for ngsparkstorageaccount
+
+```bash
+
+az storage account keys list \
+--resource-group ngresourcegroup \
+--account-name ngsparkstorageaccount
+
+az storage container list \
+--account-name ngsparkstorageaccount \
+--account-key TCeus8dSphBrvL0IQ3N7D2+G/a4F8kWLqg7klBeMRLsEW+0e2fjPYoRm2jsZEo5iwZF+uZ+8Fjg2G0TXcDOjXA==
+
+az storage container list \
+--account-name ngsparkstorageaccount \
+--account-key PUmQtT/j4dxqaYTkPs3YQP0jkNDOg3oAtw8jUdYEWe3tOb97jChgNJCI2IH9iXWzTi18zJlm+Xgv4hBtXh9iiw==
+
+az storage container create --name movielens-dataset \
+--account-name ngsparkstorageaccount \
+--account-key PUmQtT/j4dxqaYTkPs3YQP0jkNDOg3oAtw8jUdYEWe3tOb97jChgNJCI2IH9iXWzTi18zJlm+Xgv4hBtXh9iiw==
+
+az storage blob upload-batch \
+--destination ng-spark-2017/movielense_dataset \
+--source ml-latest \
+--account-name ngsparkstorageaccount \
+--account-key PUmQtT/j4dxqaYTkPs3YQP0jkNDOg3oAtw8jUdYEWe3tOb97jChgNJCI2IH9iXWzTi18zJlm+Xgv4hBtXh9iiw==
+
+az storage blob upload \
+--account-name ngsparkstorageaccount \
+--account-key PUmQtT/j4dxqaYTkPs3YQP0jkNDOg3oAtw8jUdYEWe3tOb97jChgNJCI2IH9iXWzTi18zJlm+Xgv4hBtXh9iiw== \
+--file target/learning-spark-1.0.jar \
+--name learning-spark-1.0.jar \
+--container-name ng-spark-2017
+
+az storage blob upload \
+--account-name ngsparkstorageaccount \
+--account-key TCeus8dSphBrvL0IQ3N7D2+G/a4F8kWLqg7klBeMRLsEW+0e2fjPYoRm2jsZEo5iwZF+uZ+8Fjg2G0TXcDOjXA== \
+--file learning-spark-1.0.jar \
+--name learning-spark-1.0.jar \
+--container-name ng-spark-2017
+
+
+time \
+spark-submit \
+--packages com.databricks:spark-csv_2.10:1.5.0 \
+--class com.nileshgule.movielens.UserAnalysis \
+--master yarn \
+--deploy-mode cluster \
+--num-executors 2 \
+--executor-memory 2G \
+--executor-cores 6 \
+--name UserAnalysis \
+--conf "spark.app.id=UserAnalysis" \
+wasb://ng-spark-2017@ngsparkstorageaccount.blob.core.windows.net/learning-spark-1.0.jar \
+wasb://ng-spark-2017@ngsparkstorageaccount.blob.core.windows.net/movielense_dataset/ratings.csv \
+wasb://ng-spark-2017@ngsparkstorageaccount.blob.core.windows.net/movielense_dataset/movies.csv
+```
+
 ### Create container to store Movielens dataset
 ```bash
 
     az storage container create --name movielens-dataset \
     --account-name ngstorageaccount \
     --account-key btQLcwrSfGXolrdtnXt0115rizP24U+JFH7M9uWQxcyQ2gASp3+lxIAe1+44U4JFMvBH8ZDZT30TJh5q4p0lIg==
+    
+    
 
 ```
 
@@ -79,6 +138,8 @@ az storage blob upload-batch \
 --account-name ngstorageaccount \
 --account-key btQLcwrSfGXolrdtnXt0115rizP24U+JFH7M9uWQxcyQ2gASp3+lxIAe1+44U4JFMvBH8ZDZT30TJh5q4p0lIg==
 
+
+
 ``` 
 
 ### Run Spark Submit
@@ -92,6 +153,15 @@ spark-submit \
 --name PairRDDExample \
 --conf "spark.app.id=PairRDDExample" \
 wasb://ng-spark-2017-08-18t14-24-10-259z@ngstorageaccount.blob.core.windows.net/learning-spark-1.0.jar
+
+spark-submit \
+--class com.nileshgule.PairRDDExample \
+--master yarn \
+--deploy-mode cluster \
+--executor-memory 2g \
+--name PairRDDExample \
+--conf "spark.app.id=PairRDDExample" \
+wasb://ng-spark-2017@ngsparkstorageaccount.blob.core.windows.net/learning-spark-1.0.jar
 ```
 
 ```bash
