@@ -20,3 +20,18 @@ spark-submit \
   --master local[4] \
   target/learning-spark-1.0.jar
 
+az storage blob upload \
+--account-name hdsparkclusterstorage \
+--account-key <<replace key here>> \
+--file learning-spark-1.0.jar \
+--name learning-spark-1.0.jar \
+--container-name hd-spark-cluster-2019
+
+spark-submit \
+--class com.nileshgule.WordCount \
+--master yarn \
+--deploy-mode cluster \
+--executor-memory 2g \
+--name WordCount \
+--conf "spark.app.id=WordCount" \
+wasb://hd-spark-cluster-2019@hdsparkclusterstorage.blob.core.windows.net/learning-spark-1.0.jar
