@@ -24,3 +24,7 @@ target/**
 ml-latest/**
 #AWS EMR related files
 *.pem
+
+codealike.json
+*.iml
+/out

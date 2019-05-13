@@ -18,7 +18,7 @@ target/learning-spark-1.0.jar
 ### Login to head node using SSH
 ```bash
 ssh sshuser@ng-spark-ssh.azurehdinsight.net
-```
+```∑
 
 ### To fix the ECDSA key fingerprint command run
 ```bash

@@ -1,12 +1,12 @@
 package com.nileshgule;
 
-import org.junit.jupiter.api.Test;
+//import org.junit.jupiter.api.Test;
 
 class CachingExampleTest {
-    @Test
+//    @Test
     void main() {
-        String[] args = {"1", "100"};
-        CachingExample.main(args);
+//        String[] args = {"1", "100"};
+//        CachingExample.main(args);
     }
 
 }
