@@ -14,11 +14,17 @@ public class WordCount {
                 .getOrCreate();
 
 
-        String logFile = "input/README.md";
+        String readmeFilePath = args[0];
+
+//      "input/README.md";
+//      "wasb://hd-spark-cluster-2019@hdsparkclusterstorage.blob.core.windows.net/input/README.md";
+//      "/input/README.md";
+
+
 
         Dataset<String> logData = spark
                 .read()
-                .textFile(logFile)
+                .textFile(readmeFilePath)
                 .cache();
 
         long numAs = logData.filter(s -> s.contains("a")).count();
