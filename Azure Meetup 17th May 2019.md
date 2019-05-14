@@ -64,15 +64,24 @@ target/learning-spark-1.0.jar
 
 az storage blob upload \
 --account-name hdsparkclusterstorage \
---account-key 7fWrfquebMPAYZli6LuGe+xFYa2AgqHinZXoGJVmjAByGekTYOpaUgM0g0QZPomprgR0bm9Xzh1Hua6IBvi9XA== \
+--account-key <<Put your API key here>> \
 --file learning-spark-1.0.jar \
 --name learning-spark-1.0.jar \
 --container-name hd-spark-cluster-2019
 
 az storage blob upload \
 --account-name hdsparkclusterstorage \
---account-key 7fWrfquebMPAYZli6LuGe+xFYa2AgqHinZXoGJVmjAByGekTYOpaUgM0g0QZPomprgR0bm9Xzh1Hua6IBvi9XA== \
+--account-key <<Put your API key here>> \
 --file input\README.md \
 --name input\README.md \
 --container-name hd-spark-cluster-2019
 
+time \
+spark-submit --packages com.databricks:spark-csv_2.10:1.5.0 \
+--class com.nileshgule.movielens.MoviesCsvReader \
+--master local \
+--deploy-mode client \
+--executor-memory 2g \
+--name MoviesCsvReader \
+--conf "spark.app.id=MoviesCsvReader" \
+target/learning-spark-1.0.jar
