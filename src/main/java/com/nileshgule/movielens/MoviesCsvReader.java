@@ -14,11 +14,13 @@ public class MoviesCsvReader {
                 .appName("Movie CSV Reader")
                 .getOrCreate();
 
+        String inputFilePath = args[0];
+
         Dataset<Row>  ds = spark
                 .read()
                 .option("inferSchema", "true")
                 .option("header", "true")
-                .csv("ml-latest/movies.csv");
+                .csv(inputFilePath);
 
 
         ds.printSchema();
