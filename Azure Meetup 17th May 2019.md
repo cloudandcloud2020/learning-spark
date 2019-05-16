@@ -118,3 +118,25 @@ spark-submit --packages com.databricks:spark-csv_2.10:1.5.0 \
 --conf "spark.app.id=MoviesCsvReader" \
 wasb://hd-spark-cluster-2019@hdsparkclusterstorage.blob.core.windows.net/learning-spark-1.0.jar \
 /ml-latest/movies.csv
+
+time \
+spark-submit \
+--class com.nileshgule.movielens.RatingsCsvReader \
+--master yarn \
+--deploy-mode cluster \
+--executor-memory 3g \
+--name MoviesCsvReader \
+--conf "spark.app.id=RatingsCsvReader" \
+wasb://hd-spark-cluster-2019@hdsparkclusterstorage.blob.core.windows.net/learning-spark-1.0.jar \
+/ml-latest/ratings.csv
+
+time \
+spark-submit \
+--class com.nileshgule.movielens.RatingsCsvReader \
+--master yarn \
+--deploy-mode cluster \
+--executor-memory 1g \
+--name MoviesCsvReader \
+--conf "spark.app.id=RatingsCsvReader" \
+wasb://hd-spark-cluster-2019@hdsparkclusterstorage.blob.core.windows.net/learning-spark-1.0.jar \
+/ml-latest/ratings.csv
