@@ -1,11 +1,5 @@
 package com.nileshgule.movielens;
 
-//import org.apache.spark.SparkConf;
-//import org.apache.spark.api.java.JavaSparkContext;
-//import org.apache.spark.sql.DataFrame;
-//import org.apache.spark.sql.SQLContext;
-//
-
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
@@ -14,17 +8,16 @@ import static org.apache.spark.sql.functions.desc;
 
 public class UserAnalysis {
     public static void main(String[] args) {
+
         SparkSession spark = SparkSession
                 .builder()
-                .appName("JavaWordCount")
+                .appName("Movie Lens User analysis")
                 .getOrCreate();
-
-//        sparkContext.setLogLevel("ERROR");
 
         String ratingsFilePath = args[0];
 
         Dataset<Row> ratingsDataFrame = CsvUtils.getDataset(spark, ratingsFilePath);
-//
+
         System.out.println("Total number of ratings = " + ratingsDataFrame.count());
 
         ratingsDataFrame.cache();
