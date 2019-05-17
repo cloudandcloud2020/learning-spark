@@ -50,6 +50,8 @@ mvn package
 ```
 
 ## Word count example
+
+Due to an issue with iterm and zsh, the local[4] syntax is not recognized. If the terminal problem is not existing, then the below command can be be changed to `--master local[4] \`
   
 ### Local run 
 
@@ -57,7 +59,7 @@ mvn package
 
 spark-submit \
     --class "com.nileshgule.WordCount" \
-    --master local[4] \
+    --master local \
     target/learning-spark-1.0.jar \
     input/README.md
     
@@ -100,6 +102,9 @@ az storage blob upload \
 --container-name hd-spark-cluster-2019
 
 ```
+
+### Upload movie lens dataset to default container
+I used [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/) to upload the dataset to default container
 
 ## Movies CSV reader example
 
@@ -161,6 +166,22 @@ wasb://hd-spark-cluster-2019@hdsparkclusterstorage.blob.core.windows.net/learnin
 /ml-latest/movies.csv
 
 ## Ratings CSV reader
+
+### local mode
+
+```bash
+
+time \
+spark-submit \
+--class com.nileshgule.movielens.RatingsCsvReader \
+--master local \
+--executor-memory 3g \
+--name RatingsCsvReader \
+--conf "spark.app.id=RatingsCsvReader" \
+target/learning-spark-1.0.jar \
+ml-latest/ratings.csv
+
+```
 
 ### Cluster mode
 
