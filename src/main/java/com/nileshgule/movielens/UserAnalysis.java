@@ -41,11 +41,6 @@ public class UserAnalysis {
                 .orderBy(desc("count"), desc("rating"))
                 .show();
 
-////        System.out.println("Ratings by user 45811");
-////
-////        ratingsDataFrame.filter("userId = 45811").groupBy("rating")
-////                .count()
-////                .show();
         System.out.println("Most commonly used rating");
 
         ratingsDataFrame.groupBy("rating")

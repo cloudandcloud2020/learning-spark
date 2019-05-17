@@ -1,16 +1,22 @@
-# Commands for 17th March Azure Meetup
+# Commands for 17th May Azure Meetup
 
-## HDInsight cluster settings
-Cluster name - hd-spark-cluster
-Spark version - Spark 2.3
-Admin user name - admin
-Admin password - AzureMay@2019
-ssh username - sshuser
-resource group name - azure-may-2019
-Storage account name - hdsparkclusterstorage
-Storage container name - hd-spark-cluster-2019
+## Provision HDInsight cluster
 
-## Install Spark 2.3.2 locally to match the HDInsight Spark version
+### HDInsight cluster settings
+- Cluster name - hd-spark-cluster
+- Spark version - Spark 2.3
+- Admin user name - admin
+- Admin password - AzureMay@2019
+- ssh username - sshuser
+- resource group name - azure-may-2019
+- Storage account name - hdsparkclusterstorage
+- Storage container name - hd-spark-cluster-2019
+
+## Local spark setup
+
+### Install Spark 2.3.2 locally to match the HDInsight Spark version
+
+I use homebrew for installing software on Mac. You can follow instructions on [Spark website](https://spark.apache.org) about installing the version suitable for your OS.
 
 ```bash
 
@@ -20,7 +26,12 @@ brew install apache-spark@2.3.2
 ```
 
 Set `SPARK_HOME` environemnt variable
+
+```bash
+
 export SPARK_HOME=$(brew --prefix apache-spark@2.3.2)/libexec
+
+```
 
 Login to HDInsight cluster with `sshuser` credentials
 
@@ -30,8 +41,17 @@ ssh sshuser@hd-spark-cluster-ssh.azurehdinsight.net
 
 ```
 
+## Build jar learning-spark-1.0 JAR using Maven
+
+```bash
+
+mvn package
+
+```
+
+## Word count example
   
-## Local run 
+### Local run 
 
 ```bash
 
@@ -43,7 +63,7 @@ spark-submit \
     
 ```
 
-## Remote run 
+### Remote run 
 
 ```bash
 
@@ -60,6 +80,8 @@ wasb://hd-spark-cluster-2019@hdsparkclusterstorage.blob.core.windows.net/learnin
 ```  
 
 ## Upload jar to default container in storage account
+
+Run the command relative tot he learning-spark-1.0.jar file. in my case this is /target directory under the project root
 
 ```bash
 
@@ -79,7 +101,7 @@ az storage blob upload \
 
 ```
 
-## Movies CSV reader
+## Movies CSV reader example
 
 ### local mode
 
@@ -206,7 +228,7 @@ wasb://hd-spark-cluster-2019@hdsparkclusterstorage.blob.core.windows.net/learnin
 
 ```
 
-## User Analysis
+## User Analysis example
 
 ### Cluster mode
 
