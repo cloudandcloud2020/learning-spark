@@ -77,7 +77,7 @@ az storage blob upload \
 --container-name hd-spark-cluster-2019
 
 time \
-spark-submit --packages com.databricks:spark-csv_2.10:1.5.0 \
+spark-submit \
 --class com.nileshgule.movielens.MoviesCsvReader \
 --master local \
 --deploy-mode client \
@@ -87,7 +87,7 @@ spark-submit --packages com.databricks:spark-csv_2.10:1.5.0 \
 target/learning-spark-1.0.jar
 
 time \
-spark-submit --packages com.databricks:spark-csv_2.10:1.5.0 \
+spark-submit \
 --class com.nileshgule.movielens.MoviesCsvReader \
 --master yarn \
 --deploy-mode cluster \
@@ -98,7 +98,7 @@ wasb://hd-spark-cluster-2019@hdsparkclusterstorage.blob.core.windows.net/learnin
 /ml-latest/movies.csv
 
 time \
-spark-submit --packages com.databricks:spark-csv_2.10:1.5.0 \
+spark-submit \
 --class com.nileshgule.movielens.MoviesCsvReader \
 --master yarn \
 --deploy-mode cluster \
@@ -109,7 +109,7 @@ wasb://hd-spark-cluster-2019@hdsparkclusterstorage.blob.core.windows.net/learnin
 /ml-latest/movies.csv
 
 time \
-spark-submit --packages com.databricks:spark-csv_2.10:1.5.0 \
+spark-submit \
 --class com.nileshgule.movielens.MoviesCsvReader \
 --master yarn \
 --deploy-mode cluster \
@@ -152,3 +152,53 @@ spark-submit \
 wasb://hd-spark-cluster-2019@hdsparkclusterstorage.blob.core.windows.net/learning-spark-1.0.jar \
 /ml-latest/ratings.csv \
 /ml-latest/movies.csv
+
+time \
+spark-submit \
+--class com.nileshgule.movielens.UserAnalysis \
+--master yarn \
+--deploy-mode cluster \
+--executor-memory 10g \
+--name UserAnalysis \
+--conf "spark.app.id=UserAnalysis" \
+wasb://hd-spark-cluster-2019@hdsparkclusterstorage.blob.core.windows.net/learning-spark-1.0.jar \
+/ml-latest/ratings.csv
+
+time \
+spark-submit \
+--class com.nileshgule.movielens.MovieRatingAnalysis \
+--master local \
+--executor-memory 4g \
+--name MovieRatingAnalysis \
+--conf "spark.app.id=MovieRatingAnalysis" \
+target/learning-spark-1.0.jar \
+ml-latest/ratings.csv \
+ml-latest/movies.csv
+
+time \
+spark-submit \
+--class com.nileshgule.HiveTableExample \
+--master yarn \
+--deploy-mode cluster \
+--executor-memory 10g \
+--name MovieRatingAnalysis \
+--conf "spark.app.id=HiveTableExample" \
+wasb://hd-spark-cluster-2019@hdsparkclusterstorage.blob.core.windows.net/learning-spark-1.0.jar
+
+time \
+spark-submit \
+--class com.nileshgule.movielens.MoviesCsvToORCConvertor \
+--master yarn \
+--deploy-mode cluster \
+--executor-memory 10g \
+--name MoviesCsvToORCConvertor \
+--conf "spark.app.id=MoviesCsvToORCConvertor" \
+wasb://hd-spark-cluster-2019@hdsparkclusterstorage.blob.core.windows.net/learning-spark-1.0.jar \
+/ml-latest/movies.csv
+
+
+```spark-shell
+
+
+
+```

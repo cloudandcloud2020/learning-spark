@@ -9,29 +9,42 @@ import org.apache.spark.sql.SparkSession;
 
 public class MovieRatingAnalysis {
     public static void main(String[] args) {
+
         SparkSession spark = SparkSession
                 .builder()
                 .appName("Movie CSV Reader")
                 .getOrCreate();
+
+//        spark.sparkContext().setLogLevel("ERROR");
 
         String ratingsFilePath = args[0];
         String moviesFilePath = args[1];
 
         Dataset<Row> ratingsDataSet = CsvUtils.getDataset(spark, ratingsFilePath);
 
+        System.out.println("Rating dataset schema");
+        ratingsDataSet.printSchema();
+
         Dataset<Row> ratings = ratingsDataSet.select("userId", "movieId", "rating")
                 .filter("rating > 3");
+
+        System.out.println("Filtered Rating dataset schema");
+        ratings.printSchema();
 
         ratings.cache();
 
         Dataset<Row> moviesDataFrame = CsvUtils.getDataset(spark, moviesFilePath)
                 .select("movieId", "title");
 
+        System.out.println("Movies dataset schema");
+        moviesDataFrame.printSchema();
+
 //        ratings.groupBy("movieId").count().show(10);
 
         Dataset<Row> moviesAndRatingsDataFrame = ratings.join(moviesDataFrame, "movieId");
 
         System.out.println("Top 10 rated movies");
+
         moviesAndRatingsDataFrame
                 .groupBy("movieId", "title", "rating")
                 .count()
