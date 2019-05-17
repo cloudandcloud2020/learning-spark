@@ -14,7 +14,7 @@ public class MoviesCsvToORCConvertor {
         // warehouseLocation points to the default location for managed databases and tables
         String warehouseLocation = new File("spark-warehouse").getAbsolutePath();
 
-        System.out.println("Warehouse locations : $warehouseLocation");
+        System.out.println("Warehouse locations : " + warehouseLocation);
 
         SparkSession spark = SparkSession
                 .builder()
@@ -34,13 +34,13 @@ public class MoviesCsvToORCConvertor {
 
         ds.printSchema();
 
-        ds.select("movieId", "title", "genres")
+        ds.select("userId", "movieId", "rating", "timestamp")
                 .show(10, false);
 
         System.out.println("Total movies in collection = " + ds.count());
 
         ds.write()
-                .orc(warehouseLocation + "movies-orc");
+                .orc("/ml-lates/" + "rating-orc");
 
         System.out.printf("Successfully written ORC file");
     }

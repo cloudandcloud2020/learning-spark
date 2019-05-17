@@ -28,3 +28,5 @@ ml-latest/**
 codealike.json
 *.iml
 /out
+
+metastore_db
