@@ -90,7 +90,7 @@ Run the command relative tot he learning-spark-1.0.jar file. in my case this is 
 az storage blob upload \
 --account-name hdsparkclusterstorage \
 --account-key 7fWrfquebMPAYZli6LuGe+xFYa2AgqHinZXoGJVmjAByGekTYOpaUgM0g0QZPomprgR0bm9Xzh1Hua6IBvi9XA== \
---file learning-spark-1.0.jar \
+--file target/learning-spark-1.0.jar \
 --name learning-spark-1.0.jar \
 --container-name hd-spark-cluster-2019
 
@@ -328,5 +328,21 @@ df.filter("_c2 >= 3").show()
 
 
 
+
+```
+
+## ORC reader
+
+```bash
+
+time \
+spark-submit \
+--class com.nileshgule.movielens.MoviesOrcReader \
+--master yarn \
+--deploy-mode cluster \
+--executor-memory 1g \
+--name MoviesOrcReader \
+--conf "spark.app.id=MoviesOrcReader" \
+wasb://hd-spark-cluster-2019@hdsparkclusterstorage.blob.core.windows.net/learning-spark-1.0.jar
 
 ```
