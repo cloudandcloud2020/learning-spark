@@ -3,6 +3,7 @@
 ## Provision HDInsight cluster
 
 ### HDInsight cluster settings
+
 - Cluster name - hd-spark-cluster
 - Spark version - Spark 2.3
 - Admin user name - admin
@@ -51,7 +52,7 @@ mvn package
 
 ## Word count example
 
-Due to an issue with iterm and zsh, the local[4] syntax is not recognized. If the terminal problem is not existing, then the below command can be be changed to `--master local[4] \`
+Due to an issue with iterm and zsh, the local[4] syntax is not recognized. If the terminal problem is not existing, then the below command can be be changed to `--master local[4] \`. The 4 can be changed to the number of processor cores you want to asign depending on how many cores are available at your disposal.
   
 ### Local run 
 
@@ -89,14 +90,14 @@ Run the command relative tot he learning-spark-1.0.jar file. in my case this is 
 
 az storage blob upload \
 --account-name hdsparkclusterstorage \
---account-key 7fWrfquebMPAYZli6LuGe+xFYa2AgqHinZXoGJVmjAByGekTYOpaUgM0g0QZPomprgR0bm9Xzh1Hua6IBvi9XA== \
+--account-key <<put your key here>> \
 --file target/learning-spark-1.0.jar \
 --name learning-spark-1.0.jar \
 --container-name hd-spark-cluster-2019
 
 az storage blob upload \
 --account-name hdsparkclusterstorage \
---account-key 7fWrfquebMPAYZli6LuGe+xFYa2AgqHinZXoGJVmjAByGekTYOpaUgM0g0QZPomprgR0bm9Xzh1Hua6IBvi9XA== \
+--account-key <<Put your key here>> \
 --file input\README.md \
 --name input\README.md \
 --container-name hd-spark-cluster-2019
@@ -105,6 +106,8 @@ az storage blob upload \
 
 ### Upload movie lens dataset to default container
 I used [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/) to upload the dataset to default container
+
+## Execute Spark jobs using `spark-submit`
 
 ## Movies CSV reader example
 
@@ -142,6 +145,9 @@ wasb://hd-spark-cluster-2019@hdsparkclusterstorage.blob.core.windows.net/learnin
 
 ```
 
+### Executor with `1 GB` memory assigned to it
+
+```bash
 
 time \
 spark-submit \
@@ -154,6 +160,12 @@ spark-submit \
 wasb://hd-spark-cluster-2019@hdsparkclusterstorage.blob.core.windows.net/learning-spark-1.0.jar \
 /ml-latest/movies.csv
 
+```
+
+### Executor with `3 GB` memory assigned to it
+
+```bash
+
 time \
 spark-submit \
 --class com.nileshgule.movielens.MoviesCsvReader \
@@ -164,6 +176,8 @@ spark-submit \
 --conf "spark.app.id=MoviesCsvReader" \
 wasb://hd-spark-cluster-2019@hdsparkclusterstorage.blob.core.windows.net/learning-spark-1.0.jar \
 /ml-latest/movies.csv
+
+```
 
 ## Ratings CSV reader
 
@@ -200,6 +214,9 @@ wasb://hd-spark-cluster-2019@hdsparkclusterstorage.blob.core.windows.net/learnin
 
 ```
 
+### Execute with `1 GB executor memory`
+
+```bash
 
 time \
 spark-submit \
@@ -212,9 +229,11 @@ spark-submit \
 wasb://hd-spark-cluster-2019@hdsparkclusterstorage.blob.core.windows.net/learning-spark-1.0.jar \
 /ml-latest/ratings.csv
 
+```
+
 ## Movie Rting Analysis
 
-### local mode
+### Rating analysis local mode
 
 ```bash
 
@@ -230,7 +249,8 @@ ml-latest/ratings.csv \
 ml-latest/movies.csv
 
 ```
-### Cluster mode
+
+### Rating Analysis Cluster mode
 
 ```bash
 
@@ -251,7 +271,7 @@ wasb://hd-spark-cluster-2019@hdsparkclusterstorage.blob.core.windows.net/learnin
 
 ## User Analysis example
 
-### Cluster mode
+### User analysis Cluster mode
 
 ```bash
 
@@ -301,10 +321,11 @@ spark-submit \
 wasb://hd-spark-cluster-2019@hdsparkclusterstorage.blob.core.windows.net/learning-spark-1.0.jar \
 /ml-latest/ratings.csv
 
+```
 
 Verify disk usage after conversion
 
-```
+```bash
 
 hdfs dfs -du -s -h wasb://hd-spark-cluster-2019@hdsparkclusterstorage.blob.core.windows.net/ml-latest/
 
@@ -314,24 +335,11 @@ hdfs dfs -du -s -h /ml-latest/ratings.csv
 
 hdfs dfs -du -s -h /ml-lates/rating-orc
 
-```spark-shell
-
-spark-sql
-
-val df = spark.read.csv("ml-latest/ratings.csv")
-
-val df = spark.read.csv("wasb://hd-spark-cluster-2019@hdsparkclusterstorage.blob.core.windows.net/ml-latest/ratings.csv")
-
-val df = spark.read.csv("/ml-latest/ratings.csv")
-
-df.filter("_c2 >= 3").show()
-
-
-
-
 ```
 
-## ORC reader
+## Movies ORC file reader example
+
+### ORC file reader cluster mode
 
 ```bash
 
@@ -344,5 +352,19 @@ spark-submit \
 --name MoviesOrcReader \
 --conf "spark.app.id=MoviesOrcReader" \
 wasb://hd-spark-cluster-2019@hdsparkclusterstorage.blob.core.windows.net/learning-spark-1.0.jar
+
+```
+
+```spark-shell
+
+spark-sql
+
+val df = spark.read.csv("ml-latest/ratings.csv")
+
+val df = spark.read.csv("wasb://hd-spark-cluster-2019@hdsparkclusterstorage.blob.core.windows.net/ml-latest/ratings.csv")
+
+val df = spark.read.csv("/ml-latest/ratings.csv")
+
+df.filter("_c2 >= 3").show()
 
 ```
