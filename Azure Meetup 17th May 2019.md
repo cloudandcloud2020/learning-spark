@@ -60,7 +60,7 @@ Due to an issue with iterm and zsh, the local[4] syntax is not recognized. If th
 
 spark-submit \
     --class "com.nileshgule.WordCount" \
-    --master local \
+    --master local[4] \
     target/learning-spark-1.0.jar \
     input/README.md
     
@@ -84,7 +84,7 @@ wasb://hd-spark-cluster-2019@hdsparkclusterstorage.blob.core.windows.net/learnin
 
 ## Upload jar to default container in storage account
 
-Run the command relative tot he learning-spark-1.0.jar file. in my case this is /target directory under the project root
+Run the command relative to the `learning-spark-1.0.jar` file. in my case this is `/target` directory under the project root. The blob storage account name is `hdsparkclusterstorage` and the container name is `hd-spark-cluster-2019`.
 
 ```bash
 
@@ -105,7 +105,10 @@ az storage blob upload \
 ```
 
 ### Upload movie lens dataset to default container
+
 I used [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/) to upload the dataset to default container
+
+**Note** : while running the spark-submit command, the input path for MovieLens datasets is relative. The files are copied to the `ml-latest` directory inside the default container named `hd-spark-cluster-2019`. While passing the file names for movies.csv, ratings.csv as inputs to the spark-submit command, we can either give the relative path as `ml-latest/movies.csv` or the fully qualified path to the blob as `wasb://hd-spark-cluster-2019@hdsparkclusterstorage.blob.core.windows.net/ml-latest/movies.csv`.
 
 ## Execute Spark jobs using `spark-submit`
 

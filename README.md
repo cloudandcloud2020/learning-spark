@@ -10,32 +10,46 @@ Ensure that following prerequsites are met for running code which is part of thi
 1. **Java 8** is installed
 * [See](https://www.mkyong.com/java/how-to-set-java_home-environment-variable-on-mac-os-x/) for more details on how to set JAVA_HOME for Mac OSX 
 * JAVA_HOME is set correctly
-2. **Apache Spark 1.6.3** with Hadoop 2.6 is installed 
+2. **Apache Spark 2.3.2** with Hadoop 2.7 is installed 
 * SPARK_HOME environment variable is set correctly
 3. **Maven** is installed
 
 ## Build & Run code
+
 ### Run Maven clean using command
 
+I am using `Maven 3.6.1` version
+
+Run the maven related command from the directory relative to `pom.xml`
+
 ```bash
+
 mvn clean
+
 ```
 
 ### Run Maven compile using command
 
 ```bash
+
 mvn compile
+
 ```
 
 ### Run Maven package using command
 
 ```bash
+
 mvn package
+
 ```
 
 *Note:* In order to run the spark-submit command with more than 1 thread, zsh throws error. To overcome the error use the following option
+
 ```bash
+
 setopt nonomatch
+
 ```
 
 ### Run wordcount program
