@@ -255,6 +255,8 @@ ml-latest/movies.csv
 
 ### Rating Analysis Cluster mode
 
+Referenceing the rating & movies csv using default container
+
 ```bash
 
 time \
@@ -268,6 +270,40 @@ spark-submit \
 wasb://hd-spark-cluster-2019@hdsparkclusterstorage.blob.core.windows.net/learning-spark-1.0.jar \
 /ml-latest/ratings.csv \
 /ml-latest/movies.csv
+
+```
+
+Referenceing the rating & movies csv using WASB fully qualified path
+
+```bash
+
+spark-submit \
+--class com.nileshgule.movielens.MovieRatingAnalysis \
+--master yarn \
+--deploy-mode cluster \
+--executor-memory 1g \
+--name MoviesCsvReader \
+--conf "spark.app.id=MovieRatingAnalysis" \
+wasb://hd-spark-cluster-2019@hdsparkclusterstorage.blob.core.windows.net/learning-spark-1.0.jar \
+wasb://hd-spark-cluster-2019@hdsparkclusterstorage.blob.core.windows.net/ml-latest/ratings.csv \
+wasb://hd-spark-cluster-2019@hdsparkclusterstorage.blob.core.windows.net/ml-latest/movies.csv
+
+```
+
+Referenceing the rating & movies csv using https fully qualified path
+
+```bash
+
+spark-submit \
+--class com.nileshgule.movielens.MovieRatingAnalysis \
+--master yarn \
+--deploy-mode cluster \
+--executor-memory 1g \
+--name MoviesCsvReader \
+--conf "spark.app.id=MovieRatingAnalysis" \
+https://hdsparkclusterstorage.blob.core.windows.net/hd-spark-cluster-2019/learning-spark-1.0.jar \
+https://hdsparkclusterstorage.blob.core.windows.net/hd-spark-cluster-2019/ml-latest/ratings.csv \
+https://hdsparkclusterstorage.blob.core.windows.net/hd-spark-cluster-2019/ml-latest/movies.csv
 
 
 ```
@@ -354,7 +390,8 @@ spark-submit \
 --executor-memory 1g \
 --name MoviesOrcReader \
 --conf "spark.app.id=MoviesOrcReader" \
-wasb://hd-spark-cluster-2019@hdsparkclusterstorage.blob.core.windows.net/learning-spark-1.0.jar
+wasb://hd-spark-cluster-2019@hdsparkclusterstorage.blob.core.windows.net/learning-spark-1.0.jar \
+/ml-lates/rating-orc
 
 ```
 

@@ -14,7 +14,8 @@ public class MoviesOrcReader {
                 .appName("Movie CSV Reader")
                 .getOrCreate();
 
-        String inputFilePath = "/ml-lates/rating-orc";
+        String inputFilePath = args[0];
+        //"/ml-lates/rating-orc";
 
         Dataset<Row>  ds = spark
                 .read()
