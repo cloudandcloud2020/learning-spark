@@ -1,15 +1,22 @@
 # learning-spark
 
 [![Build Status](https://dev.azure.com/nileshgule0211/Apache%20Spark/_apis/build/status/Apache%20Spark-Maven-CI?branchName=master)](https://dev.azure.com/nileshgule0211/Apache%20Spark/_build/latest?definitionId=6&branchName=master)
-
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=com.nileshgule%3Alearning-spark&metric=alert_status)](https://sonarcloud.io/dashboard?id=com.nileshgule%3Alearning-spark)
 
 ## Prerequisites
+
 Ensure that following prerequsites are met for running code which is part of this repository.
+
 1. **Java 8** is installed
+
 * [See](https://www.mkyong.com/java/how-to-set-java_home-environment-variable-on-mac-os-x/) for more details on how to set JAVA_HOME for Mac OSX 
+
 * JAVA_HOME is set correctly
+
 2. **Apache Spark 2.3.2** with Hadoop 2.7 is installed 
+
 * SPARK_HOME environment variable is set correctly
+
 3. **Maven** is installed
 
 ## Build & Run code
@@ -133,7 +140,8 @@ time spark-submit --packages com.groupon.sparklint:sparklint-spark163_2.10:1.0.8
 https://ngstorageaccount.blob.core.windows.net/ng-spark-2017-08-17t14-58-18-512z/SparkSubmission/2017/08/17/92528012-ad26-4f36-9ef2-6174305eae2a/learning-spark-1.0.jar
 
 ```
-------
+
+---
 
 ### Run BasicRDD program
 
