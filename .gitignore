@@ -19,6 +19,7 @@ hs_err_pid*
 
 #intellij generated files
 .idea
+.vscode
 .DS_Store
 target/**
 ml-latest/**
