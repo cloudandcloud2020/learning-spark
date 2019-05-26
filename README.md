@@ -1,8 +1,6 @@
 # learning-spark
 
-[![Build Status](https://travis-ci.org/NileshGule/learning-spark.svg?branch=master)](https://travis-ci.org/NileshGule/learning-spark)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/03a136aed4204f869ed4f70c8b803f63)](https://www.codacy.com/app/vn_nilesh/learning-spark?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=NileshGule/learning-spark&amp;utm_campaign=Badge_Grade)
-[![codecov](https://codecov.io/gh/NileshGule/learning-spark/branch/master/graph/badge.svg)](https://codecov.io/gh/NileshGule/learning-spark)
+[![Build Status](https://dev.azure.com/nileshgule0211/Apache%20Spark/_apis/build/status/Apache%20Spark-Maven-CI?branchName=master)](https://dev.azure.com/nileshgule0211/Apache%20Spark/_build/latest?definitionId=6&branchName=master)
 
 
 ## Prerequisites
