@@ -16,10 +16,13 @@ public class CachingExample {
        JavaSparkContext context = new JavaSparkContext(conf);
 
 //        Preconditions.checkArgument(args.length > 1, "Provide start and end range generation");
-       Integer rangeStart = Integer.parseInt(args[0]);
-       Integer rangeEnd = Integer.parseInt(args[1]);
+       int rangeStart = Integer.parseInt(args[0]);
+       int rangeEnd = Integer.parseInt(args[1]);
 
-       JavaRDD<Integer> numbers = context.parallelize(IntStream.rangeClosed(rangeStart, rangeEnd).boxed().collect(Collectors.toList()));
+       JavaRDD<Integer> numbers = context.parallelize(
+               IntStream.rangeClosed(rangeStart, rangeEnd)
+                       .boxed()
+                       .collect(Collectors.toList()));
 
        numbers.cache();
 

@@ -1,5 +1,6 @@
 package com.nileshgule.movielens;
 
+import org.apache.spark.sql.DataFrame;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
@@ -15,7 +16,7 @@ public class RatingsCsvReaderWithKryo {
 
         String ratingsCsvPath = args[0];
 
-        Dataset<Row> ds = spark
+        DataFrame ds = spark
                 .read()
                 .option("inferSchema", "true")
                 .option("header", "true")
@@ -24,7 +25,7 @@ public class RatingsCsvReaderWithKryo {
 
         ds.cache();
 
-        Dataset<Row> ratingsDF = ds.select("userId", "movieId", "rating", "timestamp");
+        DataFrame ratingsDF = ds.select("userId", "movieId", "rating", "timestamp");
 
         ratingsDF.show(10, false);
 

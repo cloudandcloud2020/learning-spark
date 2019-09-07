@@ -3,6 +3,7 @@ package com.nileshgule.movielens;
 
 import static org.apache.spark.sql.functions.*;
 
+import org.apache.spark.sql.DataFrame;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
@@ -20,12 +21,12 @@ public class MovieRatingAnalysis {
         String ratingsFilePath = args[0];
         String moviesFilePath = args[1];
 
-        Dataset<Row> ratingsDataSet = CsvUtils.getDataset(spark, ratingsFilePath);
+        Dataset<Row> ratingsDataSet = CsvUtils.getDataFrame(spark, ratingsFilePath);
 
         System.out.println("Rating dataset schema");
         ratingsDataSet.printSchema();
 
-        Dataset<Row> ratings = ratingsDataSet.select("userId", "movieId", "rating")
+        DataFrame ratings = ratingsDataSet.select("userId", "movieId", "rating")
                 .filter("rating > 3");
 
         System.out.println("Filtered Rating dataset schema");
@@ -33,7 +34,7 @@ public class MovieRatingAnalysis {
 
         ratings.cache();
 
-        Dataset<Row> moviesDataFrame = CsvUtils.getDataset(spark, moviesFilePath)
+        DataFrame moviesDataFrame = CsvUtils.getDataFrame(spark, moviesFilePath)
                 .select("movieId", "title");
 
         System.out.println("Movies dataset schema");
@@ -41,7 +42,7 @@ public class MovieRatingAnalysis {
 
 //        ratings.groupBy("movieId").count().show(10);
 
-        Dataset<Row> moviesAndRatingsDataFrame = ratings.join(moviesDataFrame, "movieId");
+        DataFrame moviesAndRatingsDataFrame = ratings.join(moviesDataFrame, "movieId");
 
         System.out.println("Top 10 rated movies");
 

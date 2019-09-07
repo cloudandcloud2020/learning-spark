@@ -24,7 +24,7 @@ public class UserAnalysis {
 
         String ratingsFilePath = args[0];
 
-        Dataset<Row> ratingsDataFrame = CsvUtils.getDataset(spark, ratingsFilePath);
+        Dataset<Row> ratingsDataFrame = CsvUtils.getDataFrame(spark, ratingsFilePath);
 
         System.out.println("Total number of ratings = " + ratingsDataFrame.count());
 
