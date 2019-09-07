@@ -21,12 +21,13 @@ public class MovieRatingAnalysis {
         String ratingsFilePath = args[0];
         String moviesFilePath = args[1];
 
-        Dataset<Row> ratingsDataSet = CsvUtils.getDataFrame(spark, ratingsFilePath);
+        DataFrame ratingsDataSet = CsvUtils.getDataFrame(spark, ratingsFilePath);
 
         System.out.println("Rating dataset schema");
         ratingsDataSet.printSchema();
 
-        DataFrame ratings = ratingsDataSet.select("userId", "movieId", "rating")
+        DataFrame ratings = ratingsDataSet
+                .select("userId", "movieId", "rating")
                 .filter("rating > 3");
 
         System.out.println("Filtered Rating dataset schema");
@@ -34,7 +35,8 @@ public class MovieRatingAnalysis {
 
         ratings.cache();
 
-        DataFrame moviesDataFrame = CsvUtils.getDataFrame(spark, moviesFilePath)
+        DataFrame moviesDataFrame = CsvUtils
+                .getDataFrame(spark, moviesFilePath)
                 .select("movieId", "title");
 
         System.out.println("Movies dataset schema");

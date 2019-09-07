@@ -13,12 +13,7 @@ public class RatingsCsvReader {
 
         String ratingsCsvPath = args[0];
 
-        DataFrame ds = spark
-                .read()
-                .option("inferSchema", "true")
-                .option("header", "true")
-                .csv(ratingsCsvPath);
-
+        DataFrame ds = CsvUtils.getDataFrame(spark, ratingsCsvPath);
 
         ds.cache();
 

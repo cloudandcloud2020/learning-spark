@@ -17,12 +17,7 @@ public class MoviesCsvReader {
 
         String inputFilePath = args[0];
 
-        DataFrame ds = spark
-                .read()
-                .option("inferSchema", "true")
-                .option("header", "true")
-                .csv(inputFilePath);
-
+        DataFrame ds = CsvUtils.getDataFrame(spark, inputFilePath);
 
         ds.printSchema();
 

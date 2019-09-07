@@ -26,12 +26,7 @@ public class MoviesCsvToORCConvertor {
 
         String inputFilePath = args[0];
 
-        DataFrame ds = spark
-                .read()
-                .option("inferSchema", "true")
-                .option("header", "true")
-                .csv(inputFilePath);
-
+        DataFrame ds = CsvUtils.getDataFrame(spark, inputFilePath);
 
         ds.printSchema();
 
@@ -43,6 +38,6 @@ public class MoviesCsvToORCConvertor {
         ds.write()
                 .orc("/ml-lates/" + "rating-orc");
 
-        System.out.printf("Successfully written ORC file");
+        System.out.print("Successfully written ORC file");
     }
 }
