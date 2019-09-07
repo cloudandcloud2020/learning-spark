@@ -16,11 +16,11 @@ public class RatingsCsvReaderWithKryo {
 
         String ratingsCsvPath = args[0];
 
-        DataFrame ds = CsvUtils.getDataFrame(spark, ratingsCsvPath);
+        Dataset<Row> ds = CsvUtils.getDataFrame(spark, ratingsCsvPath);
 
         ds.cache();
 
-        DataFrame ratingsDF = ds.select("userId", "movieId", "rating", "timestamp");
+        Dataset<Row> ratingsDF = ds.select("userId", "movieId", "rating", "timestamp");
 
         ratingsDF.show(10, false);
 

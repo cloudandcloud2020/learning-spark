@@ -26,7 +26,7 @@ public class MoviesCsvToORCConvertor {
 
         String inputFilePath = args[0];
 
-        DataFrame ds = CsvUtils.getDataFrame(spark, inputFilePath);
+        Dataset<Row> ds = CsvUtils.getDataFrame(spark, inputFilePath);
 
         ds.printSchema();
 

@@ -1,6 +1,8 @@
 package com.nileshgule.movielens;
 
 import org.apache.spark.sql.DataFrame;
+import org.apache.spark.sql.Dataset;
+import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 
 public class RatingsCsvReader {
@@ -13,11 +15,11 @@ public class RatingsCsvReader {
 
         String ratingsCsvPath = args[0];
 
-        DataFrame ds = CsvUtils.getDataFrame(spark, ratingsCsvPath);
+        Dataset<Row> ds = CsvUtils.getDataFrame(spark, ratingsCsvPath);
 
         ds.cache();
 
-        DataFrame ratingsDF = ds.select("userId", "movieId", "rating", "timestamp");
+        Dataset<Row>  ratingsDF = ds.select("userId", "movieId", "rating", "timestamp");
 
         ratingsDF.show(10, false);
 

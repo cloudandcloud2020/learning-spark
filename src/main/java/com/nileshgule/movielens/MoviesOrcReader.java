@@ -1,6 +1,5 @@
 package com.nileshgule.movielens;
 
-import org.apache.spark.sql.DataFrame;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
@@ -18,7 +17,7 @@ public class MoviesOrcReader {
         String inputFilePath = args[0];
         //"/ml-lates/rating-orc";
 
-        DataFrame ds = spark
+        Dataset<Row> ds = spark
                 .read()
                 .orc(inputFilePath);
 
