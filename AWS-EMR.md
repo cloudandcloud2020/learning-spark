@@ -12,6 +12,7 @@ Create inline policy for following resources with all actions
 2. AWS S3
 3. AWS IAM
 4. AWS EMR
+5. cloudwatch
  
 ### Configure AWS cli and create default roles using commandline
  ```bash
