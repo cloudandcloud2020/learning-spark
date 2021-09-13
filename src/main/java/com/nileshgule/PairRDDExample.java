@@ -11,7 +11,8 @@ import java.util.List;
 
 public class PairRDDExample {
     public static void main(String[] args) {
-
+String COUNT= "10";
+        String MAtx= "10";
         SparkConf conf = new SparkConf()
                 .setAppName("Pair RDD Example");
 
